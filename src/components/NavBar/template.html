@@ -1,0 +1,19 @@
+<div class="navbar">
+    <div class="screen" :class = '{active:menuopen}'>
+        <div class="back-color" :class = '{active:menuopen}'></div>    
+    </div>
+    <div class="container" :class='{active:menuopen}'>
+        <div class="icon" >
+            <a  @click='menuopen=!menuopen'>
+                <img class="content-icon" :class='{active:menuopen}' src="https://img.icons8.com/nolan/64/menu.png"/>
+            </a><hr class="hr" :class='{active: menuopen}'>
+        </div>
+        <div class="content" :class='{active:menuopen}'>
+            <router-link to="/" class="navtx">首頁</router-link>
+            <router-link to="/about" class="navtx">關於我們</router-link>
+            <router-link to="/" class="navtx">施工中</router-link>
+            <router-link to="/" class="navtx">施工中</router-link>
+            <router-link to="/" class="navtx">施工中</router-link>
+        </div>
+    </div>
+</div>
