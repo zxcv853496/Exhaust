@@ -203,7 +203,7 @@
                 text-align: center;
                 @media (max-width:375px) {
                     font-size: 22.5px;
-                    padding: 60px 0;
+                    padding: 50px 0;
                 }
             }
             .banner{
@@ -236,15 +236,35 @@
                     border-radius: 24px;
                     clip-path: polygon(0 0, 75% 0, 25% 100%, 0 100%);
                     // clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);   
-                    transition: 1s;
+                    // transition: 1s;
+                    transition-property: clip-path;
+                    transition-duration: 1s;
                     overflow: hidden;
+                    @media (max-width:375px) {
+                        clip-path: polygon(0 0, 100% 0, 100% 25%, 0 75%);
+                        &.active{
+                            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                        }
+                    }
+                    .img1.mobile{
+                        display: none;
+                        @media (max-width:375px) {
+                            display: block;
+                        }
+                    }
+
                     .content-title{
+                        cursor: pointer;
                         position: absolute;
-                        top: 2%;
+                        top: 3%;
                         right: 40%;
                         text-align: center;
-                        transition: 1s;
+                        transition-property: top , right;
+                        transition-duration: .3s , 1s;
                         z-index: 2;
+                        @media (max-width:375px) {
+                            right: 60%;
+                        }
                         span{
                             font-size: 36px;
                             display: inline-block;
@@ -252,9 +272,18 @@
                             color: rgb(0, 0, 0);
                             background-color: rgb(255, 255, 255);
                             border-radius: 24px;
+                            transition: .5s;
+                            box-shadow: 1px 5px 10px 5px rgba(116, 116, 116, 0.475);
+                            a{
+                                display: block;
+                            }
                             @media (max-width:768px) {
                                 font-size: 24px;
                                 width: 150px;
+                            }
+                            @media (max-width:375px) {
+                                font-size: 16px;
+                                width: 100px;
                             }
                         }
                     }
@@ -268,6 +297,7 @@
                         background-color: rgba(182, 182, 182, 0.434);
                         opacity: 0;
                         transition: 1s;
+                        transition: background-color .3s;
                         @media (max-width:1024px) {
                             width: 35%;
                         }
@@ -291,9 +321,11 @@
                             }
                         }
                     }
-                    &:hover{
-                        z-index: 1;
+
+                    &.active{
                         clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);   
+                        z-index: 10;
+                        background-color: white;
                         .content-title{
                             right: 4%;
                             @media (max-width:1024px) {
@@ -306,6 +338,17 @@
                             overflow: scroll;
                         }
                     }
+                    &:hover{
+                        background-color: white;
+                        .content-title{
+                            top: 1%;
+                            span{
+                                background-color: black;
+                                color: white;
+                            }
+                        }
+                    }
+
                 }
                 .backimg2{
                     position: absolute;
@@ -316,24 +359,69 @@
                     clip-path: polygon(75% 0, 100% 0, 100% 100%, 25% 100%);
                     transition: 1s;
                     overflow: hidden;
+
+                    @media (max-width:375px) {
+                        clip-path: polygon(0 75%, 100% 25%, 100% 100%, 0 100%);
+                        &.active{
+                            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                        }
+                    }
+                    .img2.mobile{
+                        display: none;
+                        @media (max-width:375px) {
+                            display: block;
+                        }
+                    }
+
+                    &:hover{
+                        background-color: black;
+                        .content-title{
+                            top: 80%;
+                            @media (max-width:1024px) {
+                                top: 80%;
+                            }
+                            span{
+                                background-color: white;
+                                color: black;
+                            } 
+                        }
+                    }
                     .content-title{
+                        cursor: pointer;
                         position: absolute;
-                        top: 84%;
+                        top: 82%;
                         right: 40%;
                         text-align: center;
                         font-size: 36px;
-                        transition: 1s;
-                        z-index: 1;
+                        transition-property: top , right;
+                        transition-duration: .3s , 1s;
+                        z-index: 10;
+                        @media (max-width:375px) {
+                            right: 10%;
+                        }
+                        @media (max-width:1024px) {
+                            transition-property: top , right;
+                            transition-duration: 1s , 1s;
+                        }
                         span{
                             display: inline-block;
                             width: 200px;
                             color: rgb(255, 255, 255);
                             background-color: rgb(0, 0, 0);
                             border-radius: 24px;
+                            transition: .5s;
+                            box-shadow: 1px 5px 10px 5px rgba(116, 116, 116, 0.475);
+                            a{
+                                display: block;
+                            }
                             @media (max-width:768px) {
                                 font-size: 24px;
                                 width: 150px;
                             }
+                            @media (max-width:375px) {
+                                font-size: 16px;
+                                width: 100px;
+                            }                            
                         }
                     }
 
@@ -369,7 +457,9 @@
                             }
                         }
                     }
-                    &:hover{
+
+                    &.active{
+                        background-color: black;
                         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
                         .content-title{
                             right: 4%;
@@ -386,10 +476,24 @@
                         }
                     }
                 }
+                .img-hidden{
+                    visibility: hidden;
+                }
                 img{
                     width: 100%;
                     @media (max-width:375px) {
-                        transform: rotate(90deg);
+                        margin: auto;
+                        width: 50%;
+                    }
+                }
+                .img1{
+                    @media (max-width:375px) {
+                        display: none;
+                    }
+                }
+                .img2{
+                    @media (max-width:375px) {
+                        display: none;
                     }
                 }
             }

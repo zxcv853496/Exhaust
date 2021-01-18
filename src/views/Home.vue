@@ -74,14 +74,15 @@
           Exhaust-產品圖
         </div>
         <div class="banner">
-          <div class="backimg1">
-            <img class="img1" src="../assets/icon/model_big_BK999.png" alt="">
-            <div class="content-title"
-                :class="{active: section3_banner ==true }">
-              <span><a @click="section3_banner =! section3_banner">BK999</a></span>
+          <div class="backimg1"
+          :class="{active: section3_banner1 ==true }">
+            <img class="img1" v-bind:src="bg_1" alt="" >
+            <img class="img1 mobile" v-bind:src="bg_1_mobile" alt="">
+            <div class="content-title">
+              <span><a @click="section3_banner1 =! section3_banner1">BK999</a></span>
             </div>
             <div class="content-back">
-              <div class="content" v-show="section3_banner">
+              <div class="content" v-show="section3_banner1">
                 <p>焊接</p>
                 <span>每一道焊接點都是牛王工廠師傅用心的結晶</span>
                 <p>材質介紹</p>
@@ -92,14 +93,17 @@
                 <span>抗蝕性較為優異，外觀上增添質感</span>
               </div>
             </div>
+            
           </div>
-          <div class="backimg2">
-            <img class="img2" src="../assets/icon/model_big_BX7.png" alt="">
+          <div class="backimg2"
+          :class="{active: section3_banner2 == true}">
+            <img class="img2" v-bind:src="bg_2" alt="">
+            <img class="img2 mobile" v-bind:src="bg_2_mobile" alt="">
             <div class="content-title">
-              <span><a>BX7</a></span>
+              <span><a @click="section3_banner2 =! section3_banner2">BX7</a></span>
             </div>
             <div class="content-back">
-              <div class="content">
+              <div class="content" v-show="section3_banner2">
                 <p>焊接</p>
                 <span>每一道焊接點都是牛王工廠師傅用心的結晶</span>
                 <p>材質介紹</p>
@@ -114,7 +118,6 @@
         </div>
       </div>
     </div>
-    <div class="space">---</div>
   </div>
 </template>
 
@@ -192,9 +195,15 @@ export default {
           ],
         },
       ],
-      section3_banner: false,
+      bg_1: require("../assets/icon/model_big_BK999.png"),
+      bg_1_mobile: require("../assets/icon/model_big_BK999_mobile.png"),
+      bg_2: require("../assets/icon/model_big_BX7.png"),
+      bg_2_mobile: require("../assets/icon/model_big_BX7_mobile.png"),
+      section3_banner1: false,
+      section3_banner2: false,
     };
   },
-  computed: {},
+  computed: {
+  },
 };
 </script>
