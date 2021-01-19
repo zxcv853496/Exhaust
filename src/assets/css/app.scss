@@ -1,4 +1,11 @@
+//base
+@import './base/base';
 @import './util/variable';
 @import './keyframes';
+
+//components
 @import './compoents/NavBar';
+@import './compoents/Footer';
+
+//pages
 @import './Home';

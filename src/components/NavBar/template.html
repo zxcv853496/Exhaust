@@ -6,9 +6,14 @@
         <div class="icon" >
             <a  @click='menuopen=!menuopen'>
                 <img class="content-icon" :class='{active:menuopen}' src="https://img.icons8.com/nolan/64/menu.png"/>
-            </a><hr class="hr" :class='{active: menuopen}'>
+            </a>
+            <img class="mainicon" src="../../assets/icon/LOGO/雷神LOGO-white.png" alt="" >
         </div>
+        <hr class="hr" :class='{active: menuopen}'>
         <div class="content" :class='{active:menuopen}'>
+            <router-link to="/" class="navicon">
+                <img src="../../assets/icon/LOGO/雷神LOGO-white.png" alt="" >
+            </router-link>
             <router-link to="/" class="navtx">首頁</router-link>
             <router-link to="/about" class="navtx">關於我們</router-link>
             <router-link to="/" class="navtx">施工中</router-link>

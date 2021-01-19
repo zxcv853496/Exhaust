@@ -81,18 +81,21 @@
             <div class="content-title">
               <span><a @click="section3_banner1 =! section3_banner1">BK999</a></span>
             </div>
-            <div class="content-back">
-              <div class="content" v-show="section3_banner1">
-                <p>焊接</p>
-                <span>每一道焊接點都是牛王工廠師傅用心的結晶</span>
-                <p>材質介紹</p>
-                <span>不鏽鋼304材質因含鎳成分故抗氧化及耐蝕效果佳</span>
-                <p>彩繪鐵牌</p>
-                <span>隨管皆會附贈精緻的白鐵雷射雕刻牌</span>
-                <p>前段白鐵</p>
-                <span>抗蝕性較為優異，外觀上增添質感</span>
+            <div class="container-content">
+              <div class="content-back">
+                <div class="content" v-show="section3_banner1">
+                  <p>焊接</p>
+                  <span>每一道焊接點都是牛王工廠師傅用心的結晶</span>
+                  <p>材質介紹</p>
+                  <span>不鏽鋼304材質因含鎳成分故抗氧化及耐蝕效果佳</span>
+                  <p>彩繪鐵牌</p>
+                  <span>隨管皆會附贈精緻的白鐵雷射雕刻牌</span>
+                  <p>前段白鐵</p>
+                  <span>抗蝕性較為優異，外觀上增添質感</span>
+                </div>
               </div>
             </div>
+            
             
           </div>
           <div class="backimg2"
@@ -102,18 +105,21 @@
             <div class="content-title">
               <span><a @click="section3_banner2 =! section3_banner2">BX7</a></span>
             </div>
-            <div class="content-back">
-              <div class="content" v-show="section3_banner2">
-                <p>焊接</p>
-                <span>每一道焊接點都是牛王工廠師傅用心的結晶</span>
-                <p>材質介紹</p>
-                <span>不鏽鋼304材質因含鎳成分故抗氧化及耐蝕效果佳</span>
-                <p>彩繪鐵牌</p>
-                <span>隨管皆會附贈精緻的白鐵雷射雕刻牌</span>
-                <p>前段白鐵</p>
-                <span>抗蝕性較為優異，外觀上增添質感</span>
+            <div class="container-content">
+              <div class="content-back">
+                <div class="content" v-show="section3_banner2">
+                  <p>焊接</p>
+                  <span>每一道焊接點都是牛王工廠師傅用心的結晶</span>
+                  <p>材質介紹</p>
+                  <span>不鏽鋼304材質因含鎳成分故抗氧化及耐蝕效果佳</span>
+                  <p>彩繪鐵牌</p>
+                  <span>隨管皆會附贈精緻的白鐵雷射雕刻牌</span>
+                  <p>前段白鐵</p>
+                  <span>抗蝕性較為優異，外觀上增添質感</span>
+                </div>
               </div>
             </div>
+            
           </div>
         </div>
       </div>
