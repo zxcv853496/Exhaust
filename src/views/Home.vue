@@ -9,6 +9,7 @@
     <div class="section2">
       <div class="compare-title">
         Exhaust-產品比較
+        <hr style="width:80%; margin:10px auto;">
       </div>
       <div class="compare-container-title">
         <div class="compare-product-container">
@@ -128,10 +129,13 @@
     <div class="section4">
       <div class="main container">
         <div class="main title">
-          Exhaust-購物車
+          Exhaust-購物
+          <hr style="width:80%; margin:10px auto;">
         </div>
         <div class="container">
-          
+          <Pagination1 />
+          <Pagination2 />
+          <Pagination3 />
         </div>
       </div>
     </div>
@@ -140,12 +144,20 @@
 
 <script>
 // @ is an alias to /src
+import Pagination1 from '../components/Pagination/Pagination1/index'
+import Pagination2 from '../components/Pagination/Pagination2/index'
+import Pagination3 from '../components/Pagination/Pagination3/index'
 
 export default {
   name: "Home",
-  components: {},
+  components: {
+    Pagination1,
+    Pagination2,
+    Pagination3,
+  },
   data() {
     return {
+      pager: 1,
       compare: [
         {
           title: "外觀造型",

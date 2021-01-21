@@ -179,8 +179,9 @@
             z-index: 2;
             max-width: 1200px;
             margin: 100px auto;
-            @media (max-width:600px) {
-                margin: 0 auto;
+            @media (max-width:1000px) {
+                margin: 100px auto;
+                margin-bottom: 0px;
             }
             .section3-title{
                 position: relative;
@@ -201,9 +202,13 @@
                 max-width: 1200px;
                 width: 100%;
                 height: 50vh;
+                @media (max-width:950px) {
+                    height: 50vw;
+                }
                 @media (max-width:600px) {
                     width: 55%;
                     margin: 0 auto;
+                    height: 70vw;
                 }
                 .backimg1{
                     position: absolute;
@@ -542,6 +547,9 @@
     }
 
     .section4{
+        @media (max-width:600px) {
+            margin-top: 250px;
+        }
         .main.container{
             max-width: 1200px;
             margin: 0 auto;
@@ -550,10 +558,15 @@
                 padding: 60px 0;
                 font-size: 44px;
                 font-family: 'Noto Sans TC', sans-serif;
+                @media (max-width:750px) {
+                    padding: 0px 0;
+                }
                 @media (max-width:600px) {
                     font-size: 34px;
-                    padding: 50px 0;
+                    padding: 170px 0;
+                    padding-bottom: 130px;
                 }
+
             }
 
             .container{
