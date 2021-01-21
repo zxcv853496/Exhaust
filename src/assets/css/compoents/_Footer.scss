@@ -1,0 +1,40 @@
+.footer{
+    margin-top: 100px;
+    .main.container{
+        width: 100%;
+        &.top{
+            background-color:rgb(0, 0, 0);
+            height: 175px;
+            position: relative;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            box-sizing: border-box;
+            transition: border-top .5s;
+            &:hover{
+                border-top: 1px solid rgb(233, 233, 233);
+            }
+            .back-color{
+                height: 250px;
+                width: 250px;
+                background-color:#FDDE00;
+                transform: rotate(45deg);
+                position: absolute;
+                top: -125px;
+                left: -125px;
+                transition: all .6s;
+                // transition: top .6s;
+                &:hover{
+                    transform: rotate(0deg);
+                    left: 0px;
+                    top: -50px;
+                    height: 225px;
+                }
+            }
+        }
+        &.bottom{
+            background-color:#f4f4f4;
+            height: 100px;
+            color: rgb(0, 0, 0);
+        }
+    }
+}
