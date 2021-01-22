@@ -1,0 +1,194 @@
+.pagination1{
+    animation: hidden .5s ease;
+    max-width: 1000px;
+    margin: auto;
+    font-family: 'Noto Sans TC', sans-serif;
+    .container{
+        hr{
+            border: none;
+            height: 1px;
+            background-color: rgb(226, 226, 226);
+        }
+        .product{
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            position: relative;
+            background-color:#F2F5F9;
+            padding: 50px 0px 15px;
+            margin:70px 0;
+            // box-shadow: 0px 0px 5px 1px rgb(251, 255, 0);
+            .title{
+                margin: auto;
+                font-size: 26px;
+                background-color: #ffffff;
+                position: absolute;
+                top: 0;
+                left:-20px;
+                transform: translate(0%,-50%); 
+                padding: 15px 10%;
+                box-shadow: 0px 0px 5px 0px rgb(236, 236, 236);
+            }
+            .content{
+                cursor: pointer;
+                display: flex;
+                height: 60px;
+                background-color:#ffffff;
+                // border: 1px solid rgb(209, 209, 209);
+                border-radius: 6px;
+                line-height: 60px;
+                width: 300px;
+                justify-content: space-between;
+                &:hover{
+                    border: 1px solid rgb(53, 53, 53);
+                }
+                &.active{
+                    border: 2px solid rgb(0, 0, 0);
+                    box-shadow: 0px 0px 1px 2px   rgb(204, 204, 204);
+                }
+                .tx{
+                    padding: 0 10px;
+                    // font-family: sans-serif;
+                    a{
+                        color: rgb(0, 0, 0);
+                        // font-family: sans-serif;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+
+        .product.accessory{
+            .title{
+            }
+        }
+
+        .product.setting{
+            .content{
+                width: 200px;
+            }
+        }
+
+        .product.motoname{
+            .content{
+                display: block;
+                justify-content: center;
+                cursor: auto;
+                width: 400px;
+                height:58px;
+                position: relative;
+                span{
+                    position: absolute;
+                    top: 0;
+                    left: 10px;
+                    transform: translate(0,-25%);
+                    color: rgb(199, 199, 199);
+                }
+                input{
+                    position: absolute;
+                    bottom: 0;
+                    left: 10px;
+                    transform: translate(0%,-30%);
+                    display: block;
+                    border: none;
+                    margin: auto 0;
+                    height: 20px;
+                    font-size: 16px;
+                    border: none;
+                    color: rgb(102, 102, 102);
+                    &:focus{
+                        outline: none;
+                    }
+                }
+                &:hover{
+                    border: none;
+                }
+            }
+        }
+
+    }
+}
+
+.pagination2{
+    font-family: 'Noto Sans TC', sans-serif;
+    animation: hidden 1s ease;
+    max-width: 1000px;
+    margin: auto;  
+    background-color:#F2F5F9;
+    position: relative;
+    margin-top: 70px;
+    padding: 50px 0;
+    .title{
+        margin: auto;
+        font-size: 26px;
+        background-color: #ffffff;
+        position: absolute;
+        top: 0;
+        left:-20px;
+        transform: translate(0%,-50%); 
+        padding: 15px 10%;
+        box-shadow: 0px 0px 5px 0px rgb(236, 236, 236);
+    }
+
+    .container{
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 700px;
+        margin: 0 auto;
+        input{
+            border: none;
+            &:focus{
+                outline: none;
+            }
+        }
+        .content{
+            width: 50%;
+            background-color: white;
+            border-radius: 6px;
+            margin: 10px;
+            height: 50px;
+            position: relative;
+            span{
+                position: absolute;
+                top: 0;
+                left: 10px;
+                transform: translate(0,0%);
+                color: rgb(175, 175, 175);
+            }
+            input{
+                position: absolute;
+                font-size: 16px;
+                bottom: 0;
+                left: 10px;
+                transform: translate(0%,-30%);
+            }
+            &.connection{
+                width: 100%;
+                .title-span{
+                    display: block;
+                }
+
+                .container-connection{
+                        // display: flex;
+                        // justify-content: space-evenly;
+                    span{
+                        display: block;
+                        height: 30px;
+                        line-height: 30px;
+                        width: 100px;
+                        background-color:#ffffff;
+                        border-radius: 24px;
+                        box-shadow: 0px 0px 2px 0px rgb(243, 243, 243);
+                        a{
+                            color: rgb(0, 0, 0);
+                            display: block;
+                        }
+                    }
+                }
+            }
+            &.remaker{
+                width: 100%;
+            }
+        }
+    }
+}

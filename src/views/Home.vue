@@ -9,7 +9,7 @@
     <div class="section2">
       <div class="compare-title">
         Exhaust-產品比較
-        <hr style="width:80%; margin:10px auto;">
+        <hr style="width:100%; margin:10px auto;">
       </div>
       <div class="compare-container-title">
         <div class="compare-product-container">
@@ -80,7 +80,7 @@
             <img class="img1" v-bind:src="bg_1" alt="" >
             <img class="img1 mobile" v-bind:src="bg_1_mobile" alt="">
             <div class="content-title">
-              <span><a @click="section3_banner1 =! section3_banner1">BK999</a></span>
+              <span><a @click="section3_banner1 =! section3_banner1">雷神白鐵</a></span>
             </div>
             <div class="container-content">
               <div class="content-back">
@@ -104,7 +104,7 @@
             <img class="img2" v-bind:src="bg_2" alt="">
             <img class="img2 mobile" v-bind:src="bg_2_mobile" alt="">
             <div class="content-title">
-              <span><a @click="section3_banner2 =! section3_banner2">BX7</a></span>
+              <span><a @click="section3_banner2 =! section3_banner2">雷神黑鐵</a></span>
             </div>
             <div class="container-content">
               <div class="content-back">
@@ -125,17 +125,21 @@
         </div>
       </div>
     </div>
+    <!-- span裡的字體想修改 -->
 
     <div class="section4">
       <div class="main container">
         <div class="main title">
-          Exhaust-購物
-          <hr style="width:80%; margin:10px auto;">
+          Exhaust-購買  
+          <hr style="width:100%; margin:10px auto;">
         </div>
         <div class="container">
-          <Pagination1 />
-          <Pagination2 />
-          <Pagination3 />
+          <Pagination1 v-if="pager === 0" />
+          <Pagination2 v-else-if="pager === 1" />
+          <Pagination3 v-else/>
+          <div class="btn">
+            <a href="#" @click.prevent="paggeradd">下一步</a>
+          </div>
         </div>
       </div>
     </div>
@@ -157,7 +161,7 @@ export default {
   },
   data() {
     return {
-      pager: 1,
+      pager: 0,
       compare: [
         {
           title: "外觀造型",
@@ -234,5 +238,15 @@ export default {
   },
   computed: {
   },
+  methods: {
+    paggeradd: function() {
+      if (this.pager < 2){
+        this.pager++
+      }
+      else {
+        this.pager = 0
+      }
+    }
+  }
 };
 </script>
