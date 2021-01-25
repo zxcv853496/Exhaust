@@ -1,3 +1,65 @@
 <div class="pagination3">
-    789
+    <div class="main-container">
+        <div class="title l" @click='selection_howpay(1)'
+        :class="{active: howpay ===  1}">
+            <span class="tx" ><a >線上付款</a></span>
+        </div>
+        <div class="title r" @click='selection_howpay(2)'
+        :class="{active: howpay === 2}">
+            <span class="tx"><a>貨到付款</a></span>
+        </div>
+
+        <div class="container onlinepay"
+        :class="{active: howpay === 1 }">
+            <span class="online-title "
+            @click='selection_visapay(1)'
+            :class="{active: visapay == 1}"
+            >信用卡</span>
+            <span class="online-title "
+            @click='selection_visapay(2)'
+            :class="{active: visapay == 2}"
+            >信用卡分期</span>
+            <span class="online-title "
+            @click='selection_visapay(3)'
+            :class="{active: visapay == 3}"
+            >超商條碼繳費</span>
+            <span class="online-title "
+            @click='selection_visapay(4)'
+            :class="{active: visapay == 4}"
+            >超商代碼繳費</span>
+            <span class="online-title "
+            @click='selection_visapay(5)'
+            :class="{active: visapay == 5}"
+            >WEBATM</span>
+            <div class="content"
+            :class='{active: visapay === 1 || visapay === 2} '>
+                <div class="content-card-title">
+                    請輸入你的卡片資訊：
+                </div>
+                <div class="content-card num">
+                    <span>信用卡/金融卡卡號</span>
+                    <input type="text">
+                </div>
+                <div class="content-card year">
+                    <span>到期年月</span>
+                    <input type="text">
+                </div>
+                <div class="content-card safe">
+                    <span>安全碼</span>
+                    <input type="text">
+                </div>
+                <div class="content-card num">
+                    <span>分期</span>
+                    <input type="text">
+                </div>
+            </div>
+            <div class="section-pay"></div>
+            <span class="makesure"><a>確認購買</a></span>
+        </div>
+        <div class="container cod"
+        :class="{active: howpay === 2}">
+            <span>購買產品資訊</span>
+            <span class="makesure"><a>確認購買</a></span>
+        </div>
+    </div>
 </div>

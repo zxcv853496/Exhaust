@@ -161,7 +161,7 @@ export default {
   },
   data() {
     return {
-      pager: 0,
+      pager: 1,
       compare: [
         {
           title: "外觀造型",

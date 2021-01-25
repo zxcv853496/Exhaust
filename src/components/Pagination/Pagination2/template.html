@@ -1,8 +1,8 @@
 <div class="pagination2">
-    <div class="title">
+    <div class="title l">
         購買者資訊  
     </div>
-    <div class="container">
+    <div class="container l">
         <div class="content name">
             <span>姓名</span>
             <input type="text" >
@@ -20,18 +20,39 @@
             <input type="text" >
         </div>
         <div class="content connection">
-            <span class="title-span">可連絡時間</span>
-            <div class="container-connection">
-                <span><a>上午</a></span>
-                <span><a>中午</a></span>
-                <span><a>下午</a></span>     
+            <span class="title-span" >可連絡時間</span>
+            <div class="container-connection">      
+                <span @click='product_connection_time(1)'
+                :class="{active:connection_time == 1}">
+                上午
+                </span>
+                <span @click='product_connection_time(2)'
+                :class="{active:connection_time == 2}">
+                    中午
+                </span>
+                <span @click='product_connection_time(3)'
+                :class="{active:connection_time == 3}">
+                    下午
+                </span>     
             </div>
         </div>
-
         <div class="content remarks">
             <span>備註</span>
-            <textarea name="" id="" cols="30" rows="10" style="border: none;"></textarea>
+            <textarea name="" id="" cols="30" rows="10" ></textarea>
         </div>
-
+    </div>
+    <div class="pay-container onlinepay"
+    :class="{active: howpay === 1 }">
+        <span class="online-title "
+        @click='selection_visapay(1)'
+        :class="{active: visapay == 1}"
+        >線上付款</span>
+        <span class="online-title "
+        @click='selection_visapay(2)'
+        :class="{active: visapay == 2}"
+        >貨到付款</span>
+        <div class="section-pay"></div>
+        <span class="makesure"><a>確認購買</a></span>
     </div>
 </div>
+

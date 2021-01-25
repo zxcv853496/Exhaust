@@ -275,6 +275,10 @@
                                 font-size: 36px;
                                 width: 200px;
                             }
+                            @media (max-width:400px) {
+                                font-size: 24px;
+                                width: 150px;
+                            }
                         }
                     }
 
@@ -394,9 +398,9 @@
                             @media (max-width:600px) {
                                 top: 90%;
                             }
-                            // @media (max-width:650px) {
-                            //     top: 71%;
-                            // }
+                            @media (max-width:400px) {
+                                top: 87%;
+                            }
                             span{
                                 background-color: white;
                                 color: black;
@@ -428,7 +432,9 @@
                             right: 50%;
                             transform: translate(50%);
                         }
-                        
+                        @media (max-width:400px) {
+                            top: 89%;
+                        }
                         span{
                             display: inline-block;
                             width: 200px;
@@ -447,7 +453,11 @@
                             @media (max-width:600px) {
                                 font-size: 36px;
                                 width: 200px;
-                            }                            
+                            }                
+                            @media (max-width:400px) {
+                                font-size: 24px;
+                                width: 150px;
+                            }            
                         }
                     }
 
@@ -563,13 +573,17 @@
                 font-size: 44px;
                 font-family: 'Noto Sans TC', sans-serif;
                 font-weight: 600;
-                @media (max-width:750px) {
-                    padding: 0px 0;
+                @media (max-width:840px) {
+                    padding-bottom: 50px;
                 }
                 @media (max-width:600px) {
                     font-size: 34px;
                     padding: 170px 0;
-                    padding-bottom: 130px;
+                    padding-bottom: 50px;
+                }
+                @media (max-width:400px) {
+                    font-size: 34px;
+                    padding: 100px 0;
                 }
 
             }
