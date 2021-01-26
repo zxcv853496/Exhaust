@@ -1,65 +1,74 @@
 <div class="pagination3">
-    <div class="main-container">
-        <div class="title l" @click='selection_howpay(1)'
-        :class="{active: howpay ===  1}">
-            <span class="tx" ><a >線上付款</a></span>
-        </div>
-        <div class="title r" @click='selection_howpay(2)'
-        :class="{active: howpay === 2}">
-            <span class="tx"><a>貨到付款</a></span>
-        </div>
-
-        <div class="container onlinepay"
+    <div class="title">付款資訊</div>
+    <div class="pay-container">
+        <span class="online-title "
+        @click='selection_howpay(1)'
+        :class="{active: howpay == 1}"
+        >線上付款</span>
+        <span class="online-title "
+        @click='selection_howpay(2)'
+        :class="{active: howpay == 2}"
+        >貨到付款</span>
+        <div class="pay-container-content"
+        :class = "{active: howpay === 1}">
+        <div class="onlinepay"
         :class="{active: howpay === 1 }">
-            <span class="online-title "
-            @click='selection_visapay(1)'
-            :class="{active: visapay == 1}"
-            >信用卡</span>
-            <span class="online-title "
-            @click='selection_visapay(2)'
-            :class="{active: visapay == 2}"
-            >信用卡分期</span>
-            <span class="online-title "
-            @click='selection_visapay(3)'
-            :class="{active: visapay == 3}"
-            >超商條碼繳費</span>
-            <span class="online-title "
-            @click='selection_visapay(4)'
-            :class="{active: visapay == 4}"
-            >超商代碼繳費</span>
-            <span class="online-title "
-            @click='selection_visapay(5)'
-            :class="{active: visapay == 5}"
-            >WEBATM</span>
-            <div class="content"
-            :class='{active: visapay === 1 || visapay === 2} '>
-                <div class="content-card-title">
-                    請輸入你的卡片資訊：
-                </div>
-                <div class="content-card num">
-                    <span>信用卡/金融卡卡號</span>
-                    <input type="text">
-                </div>
-                <div class="content-card year">
-                    <span>到期年月</span>
-                    <input type="text">
-                </div>
-                <div class="content-card safe">
-                    <span>安全碼</span>
-                    <input type="text">
-                </div>
-                <div class="content-card num">
-                    <span>分期</span>
-                    <input type="text">
+        <div class="pay-title">
+            <div class="tx"
+            @click='selection_selection_pay(1)'
+            :class = ' {active: selection_pay === 1 }'>
+                全額付款
+            </div>
+            <div class="tx"
+            @click='selection_selection_pay(2)'
+            :class = ' { active: selection_pay === 2 }'>
+                訂金付款
+            </div>                
+        </div>
+        <div class="pay-content" >
+            <div class="tx"
+            v-for ='item in cash_on'
+            @click= ' selection_cash_on(item.id)'
+            :class = ' { active: cash_active === item.id }'>
+                {{ item.name }}
+            </div>
+            <div class="installment-container"
+            v-if = 'cash_active === 2'>
+                <div class="installment">
+                    <div class="container-connection">      
+                        <span 
+                        v-for = 'item_installment, index in cash_on[1].installment'
+                        @click= ' selection_installment(index)'
+                        :class = ' { active: installment === index }' >
+                            {{item_installment}}
+                        </span>   
+                    </div>
                 </div>
             </div>
-            <div class="section-pay"></div>
-            <span class="makesure"><a>確認購買</a></span>
         </div>
-        <div class="container cod"
-        :class="{active: howpay === 2}">
-            <span>購買產品資訊</span>
-            <span class="makesure"><a>確認購買</a></span>
-        </div>
+        <hr>
     </div>
+        </div>  
+        <div class="product">
+            <div class="tx">
+                <span>品名: {{product_data.products[buy_data.product.category].name}}</span>  
+                <span>NT${{product_data.products[buy_data.product.category].price}}</span> 
+            </div>
+            <div class="tx">
+                <span>防燙蓋: {{product_data.case_option[buy_data.product.case_option].name}}</span> 
+                <span>NT${{product_data.case_option[buy_data.product.case_option].price}}</span> 
+            </div>
+            <div class="tx">
+                <span>內部: {{product_data.power_option[buy_data.product.power_option].name}}</span> 
+                <span>NT${{product_data.power_option[buy_data.product.power_option].price}}</span> 
+            </div>
+            <div class="tx">
+                <span>搭配車種: {{buy_data.product.model}}</span>
+            </div>
+        </div>
+        <span class="makesure"><a>確認購買</a></span>
+    </div>
+    <div class="button_box">
+        <button class="next_btn" @click="next_step">下一步</button>
+      </div>
 </div>

@@ -2,14 +2,14 @@
   <div class="home">
     <div class="section1">
       <div class="banner">
-        <img src="@/assets/icon/雷神.jpg" alt="">
+        <img src="@/assets/icon/雷神.jpg" alt="" />
       </div>
     </div>
 
     <div class="section2">
       <div class="compare-title">
         Exhaust-產品比較
-        <hr style="width:100%; margin:10px auto;">
+        <hr style="width: 100%; margin: 10px auto" />
       </div>
       <div class="compare-container-title">
         <div class="compare-product-container">
@@ -33,17 +33,18 @@
         >
           <div class="title">
             <div class="small-title">{{ item.title }}</div>
-            <a @click="item.open =! item.open">
-              <img :class='{active:item.open}' src="https://img.icons8.com/plumpy/24/000000/plus.png" />
+            <a @click="item.open = !item.open">
+              <img
+                :class="{ active: item.open }"
+                src="https://img.icons8.com/plumpy/24/000000/plus.png"
+              />
             </a>
           </div>
 
           <div class="hr">
             <hr />
           </div>
-          <div class="compare_container_main" 
-          v-show="item.open"
-          >
+          <div class="compare_container_main" v-show="item.open">
             <div
               class="compare-container"
               v-for="(item_content, item_content_index) in item.content"
@@ -65,22 +66,23 @@
           </div>
         </div>
       </div>
-    </div> 
+    </div>
     <!-- 閱讀性不佳 需修改 -->
 
     <div class="section3">
       <div class="section3-back"></div>
       <div class="section3-container">
-        <div class="section3-title">
-          Exhaust-產品圖
-        </div>
+        <div class="section3-title">Exhaust-產品圖</div>
         <div class="banner">
-          <div class="backimg1"
-          :class="{active: section3_banner1 ==true }">
-            <img class="img1" v-bind:src="bg_1" alt="" >
-            <img class="img1 mobile" v-bind:src="bg_1_mobile" alt="">
+          <div class="backimg1" :class="{ active: section3_banner1 == true }">
+            <img class="img1" v-bind:src="bg_1" alt="" />
+            <img class="img1 mobile" v-bind:src="bg_1_mobile" alt="" />
             <div class="content-title">
-              <span><a @click="section3_banner1 =! section3_banner1">雷神白鐵</a></span>
+              <span
+                ><a @click="section3_banner1 = !section3_banner1"
+                  >雷神白鐵</a
+                ></span
+              >
             </div>
             <div class="container-content">
               <div class="content-back">
@@ -96,15 +98,16 @@
                 </div>
               </div>
             </div>
-            
-            
           </div>
-          <div class="backimg2"
-          :class="{active: section3_banner2 == true}">
-            <img class="img2" v-bind:src="bg_2" alt="">
-            <img class="img2 mobile" v-bind:src="bg_2_mobile" alt="">
+          <div class="backimg2" :class="{ active: section3_banner2 == true }">
+            <img class="img2" v-bind:src="bg_2" alt="" />
+            <img class="img2 mobile" v-bind:src="bg_2_mobile" alt="" />
             <div class="content-title">
-              <span><a @click="section3_banner2 =! section3_banner2">雷神黑鐵</a></span>
+              <span
+                ><a @click="section3_banner2 = !section3_banner2"
+                  >雷神黑鐵</a
+                ></span
+              >
             </div>
             <div class="container-content">
               <div class="content-back">
@@ -120,7 +123,6 @@
                 </div>
               </div>
             </div>
-            
           </div>
         </div>
       </div>
@@ -130,16 +132,13 @@
     <div class="section4">
       <div class="main container">
         <div class="main title">
-          Exhaust-購買  
-          <hr style="width:100%; margin:10px auto;">
+          Exhaust-購買
+          <hr style="width: 100%; margin: 10px auto" />
         </div>
         <div class="container">
-          <Pagination1 v-if="pager === 0" />
-          <Pagination2 v-else-if="pager === 1" />
-          <Pagination3 v-else/>
-          <div class="btn">
-            <a href="#" @click.prevent="paggeradd">下一步</a>
-          </div>
+          <Pagination1 v-on:pagger-add="paggeradd" v-on:update-buy-data="UpdateBuyData" :product_data="product_data" v-if="pager === 0" />
+          <Pagination2 v-on:pagger-add="paggeradd" v-else-if="pager === 1" />
+          <Pagination3 v-on:pagger-add="paggeradd" :buy_data='buy_data' :product_data="product_data"  v-else />
         </div>
       </div>
     </div>
@@ -148,10 +147,9 @@
 
 <script>
 // @ is an alias to /src
-import Pagination1 from '../components/Pagination/Pagination1/index'
-import Pagination2 from '../components/Pagination/Pagination2/index'
-import Pagination3 from '../components/Pagination/Pagination3/index'
-
+import Pagination1 from "../components/Pagination/Pagination1/index";
+import Pagination2 from "../components/Pagination/Pagination2/index";
+import Pagination3 from "../components/Pagination/Pagination3/index";
 export default {
   name: "Home",
   components: {
@@ -161,11 +159,11 @@ export default {
   },
   data() {
     return {
-      pager: 1,
+      pager: 0,
       compare: [
         {
           title: "外觀造型",
-          open:true,
+          open: true,
           content: [
             {
               name: "防燙蓋選擇",
@@ -181,7 +179,7 @@ export default {
         },
         {
           title: "配備",
-          open:true,
+          open: true,
           content: [
             {
               name: "側繞、下繞選擇",
@@ -196,24 +194,24 @@ export default {
           ],
         },
         {
-          title: '材質',
+          title: "材質",
           open: true,
           content: [
             {
-              name: '碳纖維',
+              name: "碳纖維",
               product_1: true,
               product_2: true,
             },
             {
-              name: '鈦合金',
+              name: "鈦合金",
               product_1: false,
               product_2: true,
-            }
-          ]
+            },
+          ],
         },
         {
           title: "其他",
-          open:true,
+          open: true,
           content: [
             {
               name: "價錢",
@@ -234,19 +232,69 @@ export default {
       bg_2_mobile: require("../assets/icon/model_big_BX7_mobile.png"),
       section3_banner1: false,
       section3_banner2: false,
+      product_data: {
+        products: [
+          {
+            id:1,
+            name: "雷神黑鐵排氣管",
+            price: 3000,
+          },
+          {
+            id:2,
+            name: "雷神白鐵排氣管",
+            price: 3000,
+          },
+        ],
+        power_option: [
+          {
+            id:1,
+            name: "原廠引擎",
+            price: 0,
+          },
+          {
+            id:2,
+            name: "改缸引擎",
+            price: 1000,
+          },
+        ],
+        case_option: [
+          {
+            id:1,
+            name: "卡夢",
+            price: 0,
+          },
+          {
+            id:2,
+            name: "彩鈦",
+            price: 300,
+          },
+          {
+            id:3,
+            name: "KOSO",
+            price: 500,
+          },
+        ],
+      },
+      buy_data:{
+        product:{
+          category:1,
+          power_option:1,
+          case_option:1,
+          model:"",
+        },
+        user:{},
+        pay:{}
+      }
     };
   },
-  computed: {
-  },
+  computed: {},
   methods: {
-    paggeradd: function() {
-      if (this.pager < 2){
-        this.pager++
-      }
-      else {
-        this.pager = 0
-      }
+    paggeradd: function (val) {
+      this.pager = val
+    },
+    UpdateBuyData([key,val]){
+      this.buy_data[key] = val
     }
-  }
+  },
 };
 </script>

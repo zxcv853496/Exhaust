@@ -1,106 +1,67 @@
 <div class="pagination1">
     <div class="container">
         <div class="product main">
+
             <div class="title">
                 <div class="tx">品項</div>
             </div>
-            <div class="content l" 
-            @click="product_select(1)"
-            :class="{active:product == 1}">
+
+            <div class="content" 
+            v-for="item in product_data.products"
+            @click="product_select(item.id)"
+            :class="{active:product == item.id}">
                 <div class="tx">
-                    <a>雷神黑鐵排氣管</a>
+                    <a>{{item.name}}</a>
                 </div>
                 <div class="tx">
                     <span class="price">
-                        NT$ 3,000
+                        NT$ {{item.price}}
                     </span>
                 </div>
             </div>
-            <div class="content r" 
-            @click="product_select(2)"
-            :class="{active: product == 2 }">
-                <div class="tx">
-                    <a>雷神白鐵排氣管</a>
-                </div>
-                    <div class="tx">
-                        <span class="price">
-                                NT$ 3,000
-                        </span>
-                    </div>
-                </div>
+
         </div>
         <!-- <hr> -->
         <div class="product accessory">
             <div class="title">
                 <div class="tx">內部設定</div>
             </div>
-            <div class="content l" 
-            @click="option_select(1)"
-            :class="{active:accessory == 1}">
+
+            <div class="content" 
+            v-for="item in product_data.power_option"
+            @click="option_select(item.id)"
+            :class="{active:accessory == item.id}">
                 <div class="tx">
-                    <a>原廠引擎</a>
+                    <a>{{item.name}}</a>
                 </div>
                 <div class="tx">
                     <span class="price">
-                        NT$ 0
+                        NT$ {{item.price}}
                     </span>
                 </div>
             </div>
-            <div class="content r" 
-            @click="option_select(2)"
-            :class="{active:accessory == 2}">
-                <div class="tx">
-                    <a >改缸引擎</a>
-                </div>
-                <div class="tx">
-                    <span class="price">
-                        NT$ 1,000
-                    </span>
-                </div>
-            </div>
+            
         </div>
         <!-- <hr> -->
         <div class="product setting">
             <div class="title">
                 <div class="tx">防燙蓋</div>
             </div>
-            <div class="content l" 
-            @click="setting_select(1)"
-            :class="{active:setting == 1}">
+            <div class="content"
+            v-for="item in product_data.case_option" 
+            @click="setting_select(item.id)"
+            :class="{active:setting == item.id}">
                 <div class="tx">
-                    <a>卡夢</a>
+                    <a>{{item.name}}</a>
                 </div>
                 <div class="tx">
                     <span class="price">
-                        NT$ 0
-                    </span>
-                </div>
-            </div>
-            <div class="content m" 
-            @click="setting_select(2)"
-            :class="{active:setting == 2}">
-                <div class="tx">
-                    <a >彩鈦</a>
-                </div>
-                <div class="tx">
-                    <span class="price">
-                        NT$ 300
-                    </span>
-                </div>
-            </div>
-            <div class="content r" 
-            @click="setting_select(3)"
-            :class="{active:setting == 3}">
-                <div class="tx">
-                    <a >KOSO</a>
-                </div>
-                <div class="tx">
-                    <span class="price">
-                        NT$ 500
+                        NT$ {{item.price}}
                     </span>
                 </div>
             </div>
         </div>
+
         <!-- <hr> -->
         <div class="product motoname">
             <div class="title">
@@ -108,8 +69,12 @@
             </div>
             <div class="content ">
                     <span>請輸入車種</span>
-                    <input type="text">
+                    <input v-model="model" type="text">
             </div>
         </div>
+
+        <div class="button_box">
+            <button class="next_btn" @click="next_step">下一步</button>
+          </div>
     </div>
 </div>

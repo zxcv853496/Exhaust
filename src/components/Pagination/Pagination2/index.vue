@@ -1,34 +1,43 @@
-<template src='./template.html'>
-  
-</template>
+<template src='./template.html'></template>
 
 <script>
-import Pagination3 from '../Pagination3/index'
 export default {
-    components: {
-        Pagination3,
-    },
-    data() {
-        return{
-            connection_time: 1,
-            visapay: 1,
-        }
-    },
+  components: {},
+  data() {
+    return {
+      connection_time: 1, //聯絡時間
+      user_data:{
+        name: '',
+        address: '',
+        phone: '',
+        email: '',
+        connection: '',
+        remarks: '',
+      }
+    };
+  },
 
-    methods: {
-        product_connection_time: function(id){
-            this.connection_time = id;
-        },
-        selection_howpay: function(id){
-            this.howpay = id;
-        },
-        selection_visapay: function(id){
-            this.visapay = id;
-        }
-    }
-}
+  methods: {
+    product_connection_time: function (id) {
+      if (id == 1){
+        this.user_data.connection = '上午'
+      }
+      if (id == 2){
+        this.user_data.connection = '中午'
+      }
+      if (id == 3){
+        this.user_data.connection = '下午'
+      }
+    },
+    perv_step() {
+      this.$emit("pagger-add", 0);
+    },
+    next_step() {
+      this.$emit("pagger-add", 2);
+    },
+  },
+};
 </script>
 
 <style>
-
 </style>

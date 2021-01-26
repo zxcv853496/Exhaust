@@ -5,54 +5,44 @@
     <div class="container l">
         <div class="content name">
             <span>姓名</span>
-            <input type="text" >
+            <input v-model = 'user_data.name'  type="text" >
         </div>
         <div class="content phone">
             <span>電話</span>
-            <input type="text" >
+            <input v-model = 'user_data.phone' type="text" >
         </div>
         <div class="content address">
             <span>收件地址</span>
-            <input type="text" >
+            <input v-model = 'user_data.address' type="text" >
         </div>
         <div class="content email">
             <span>電子信箱</span>
-            <input type="text" >
+            <input v-model = 'user_data.email' type="text" >
         </div>
         <div class="content connection">
             <span class="title-span" >可連絡時間</span>
             <div class="container-connection">      
                 <span @click='product_connection_time(1)'
-                :class="{active:connection_time == 1}">
+                :class="{active:user_data.connection == '上午'}">
                 上午
                 </span>
                 <span @click='product_connection_time(2)'
-                :class="{active:connection_time == 2}">
+                :class="{active:user_data.connection == '中午'}">
                     中午
                 </span>
                 <span @click='product_connection_time(3)'
-                :class="{active:connection_time == 3}">
+                :class="{active:user_data.connection == '下午'}">
                     下午
                 </span>     
             </div>
         </div>
         <div class="content remarks">
             <span>備註</span>
-            <textarea name="" id="" cols="30" rows="10" ></textarea>
+            <textarea v-midel = 'remarks' name="" id="" cols="30" rows="10" ></textarea>
         </div>
-    </div>
-    <div class="pay-container onlinepay"
-    :class="{active: howpay === 1 }">
-        <span class="online-title "
-        @click='selection_visapay(1)'
-        :class="{active: visapay == 1}"
-        >線上付款</span>
-        <span class="online-title "
-        @click='selection_visapay(2)'
-        :class="{active: visapay == 2}"
-        >貨到付款</span>
-        <div class="section-pay"></div>
-        <span class="makesure"><a>確認購買</a></span>
+        <div class="button_box">
+            <button class="next_btn" @click="next_step">下一步</button>
+          </div>
     </div>
 </div>
 
