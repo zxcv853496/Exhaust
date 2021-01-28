@@ -24,7 +24,7 @@
             <div class="container-connection">      
                 <span @click='product_connection_time(1)'
                 :class="{active:user_data.connection == '上午'}">
-                上午
+                    上午
                 </span>
                 <span @click='product_connection_time(2)'
                 :class="{active:user_data.connection == '中午'}">
@@ -38,11 +38,16 @@
         </div>
         <div class="content remarks">
             <span>備註</span>
-            <textarea v-midel = 'remarks' name="" id="" cols="30" rows="10" ></textarea>
+            <textarea v-model = 'user_data.remarks' name="" id="" cols="30" rows="10" ></textarea>
         </div>
-        <div class="button_box">
-            <button class="next_btn" @click="next_step">下一步</button>
-          </div>
+    </div>
+    <div class="button_box">
+        <span class="next_btn" @click="perv_step">
+            <a>上一步</a>
+        </span>
+        <span class="next_btn" @click="next_step">
+            <a>下一步</a>
+        </span>
     </div>
 </div>
 

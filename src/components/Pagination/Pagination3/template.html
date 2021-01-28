@@ -1,74 +1,83 @@
 <div class="pagination3">
     <div class="title">付款資訊</div>
     <div class="pay-container">
-        <span class="online-title "
-        @click='selection_howpay(1)'
-        :class="{active: howpay == 1}"
-        >線上付款</span>
-        <span class="online-title "
-        @click='selection_howpay(2)'
-        :class="{active: howpay == 2}"
-        >貨到付款</span>
-        <div class="pay-container-content"
-        :class = "{active: howpay === 1}">
-        <div class="onlinepay"
-        :class="{active: howpay === 1 }">
-        <div class="pay-title">
-            <div class="tx"
-            @click='selection_selection_pay(1)'
-            :class = ' {active: selection_pay === 1 }'>
-                全額付款
-            </div>
-            <div class="tx"
-            @click='selection_selection_pay(2)'
-            :class = ' { active: selection_pay === 2 }'>
-                訂金付款
-            </div>                
-        </div>
-        <div class="pay-content" >
-            <div class="tx"
-            v-for ='item in cash_on'
-            @click= ' selection_cash_on(item.id)'
-            :class = ' { active: cash_active === item.id }'>
-                {{ item.name }}
-            </div>
-            <div class="installment-container"
-            v-if = 'cash_active === 2'>
-                <div class="installment">
-                    <div class="container-connection">      
-                        <span 
-                        v-for = 'item_installment, index in cash_on[1].installment'
-                        @click= ' selection_installment(index)'
-                        :class = ' { active: installment === index }' >
-                            {{item_installment}}
-                        </span>   
+        <span class="online-title " @click='selection_howpay(1)' :class="{active: howpay == 1}">線上付款</span>
+        <span class="online-title " @click='selection_howpay(2)' :class="{active: howpay == 2}">貨到付款</span>
+        <div class="pay-container-content" :class="{active: howpay === 1}">
+            <div class="onlinepay" :class="{active: howpay === 1 }">
+                <div class="pay-title">
+                    <div class="tx" @click='selection_selection_pay(1)' :class=' {active: selection_pay === 1 }'>
+                        全額付款
+                    </div>
+                    <div class="tx" @click='selection_selection_pay(2)' :class=' { active: selection_pay === 2 }'>
+                        訂金付款
+                    </div>
+                </div>
+                <div class="pay-content">
+                    <div class="tx" v-for='item in cash_on' @click=' selection_cash_on(item.id)'
+                        :class=' { active: cash_active === item.id }'>
+                        {{ item.name }}
+                    </div>
+                    <div class="installment-container" v-if='cash_active === 2'>
+                        <div class="installment">
+                            <div class="container-connection">
+                                <span v-for='item_installment, index in cash_on[1].installment'
+                                    @click=' selection_installment(index)' :class=' { active: installment === index }'>
+                                    {{item_installment}}
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <hr>
-    </div>
-        </div>  
         <div class="product">
-            <div class="tx">
-                <span>品名: {{product_data.products[buy_data.product.category].name}}</span>  
-                <span>NT${{product_data.products[buy_data.product.category].price}}</span> 
+            <div class="tx title">
+                <span>
+                    總價錢: NT$ {{ buy_total() }}
+                </span>
             </div>
-            <div class="tx">
-                <span>防燙蓋: {{product_data.case_option[buy_data.product.case_option].name}}</span> 
-                <span>NT${{product_data.case_option[buy_data.product.case_option].price}}</span> 
+            <div class="container">
+                <img class="img sc600up" src="../../../assets/icon/model_big_BK999.png" alt="">
+                    <img class="img sc600dn" src="../../../assets/icon/model_big_BK999_mobile.png" alt="">
+                <div class="tx">
+                    <span>品名: {{buy_product_name}} </span>
+                    <span>NT$ {{buy_product_name_price}} </span>
+                </div>
+                <div class="tx">
+                    <span>防燙蓋: {{buy_product_case_option}}</span>
+                    <span>NT$ {{buy_product_case_option_price}}</span>
+                </div>
+                <div class="tx">
+                    <span>內部: {{buy_product_power_option}}</span>
+                    <span>NT$ {{buy_product_power_option_price}}</span>
+                </div>
+                <div class="tx">
+                    <span>搭配車種: {{buy_data.product.model}}</span>
+                </div>
+                <hr>
+    
+                <div class="tx">
+                    <span>購買人: {{ buy_data.user.name }}</span>
+                </div>
+                <div class="tx">
+                    <span>
+                        地址: {{ buy_data.user.address }}
+                    </span>
+                </div>
+                <div class="tx">
+                    <span>
+                        電話: {{ buy_data.user.phone }}
+                    </span>
+                </div>
+                <div class="tx">
+                    <span>
+                        信箱: {{ buy_data.user.email }}
+                    </span>
+                </div>
             </div>
-            <div class="tx">
-                <span>內部: {{product_data.power_option[buy_data.product.power_option].name}}</span> 
-                <span>NT${{product_data.power_option[buy_data.product.power_option].price}}</span> 
-            </div>
-            <div class="tx">
-                <span>搭配車種: {{buy_data.product.model}}</span>
-            </div>
+
         </div>
         <span class="makesure"><a>確認購買</a></span>
     </div>
-    <div class="button_box">
-        <button class="next_btn" @click="next_step">下一步</button>
-      </div>
 </div>

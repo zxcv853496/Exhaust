@@ -32,15 +32,16 @@
           :key="item_index"
         >
           <div class="title">
-            <div class="small-title">{{ item.title }}</div>
-            <a @click="item.open = !item.open">
-              <img
-                :class="{ active: item.open }"
-                src="https://img.icons8.com/plumpy/24/000000/plus.png"
-              />
-            </a>
+            <div class="small-title">
+              {{ item.title }}
+              <a @click="item.open = !item.open">
+                <img
+                  :class="{ active: item.open }"
+                  src="https://img.icons8.com/plumpy/24/000000/plus.png"
+                  />
+              </a>
+            </div>
           </div>
-
           <div class="hr">
             <hr />
           </div>
@@ -127,7 +128,7 @@
         </div>
       </div>
     </div>
-    <!-- span裡的字體想修改 -->
+
 
     <div class="section4">
       <div class="main container">
@@ -137,7 +138,7 @@
         </div>
         <div class="container">
           <Pagination1 v-on:pagger-add="paggeradd" v-on:update-buy-data="UpdateBuyData" :product_data="product_data" v-if="pager === 0" />
-          <Pagination2 v-on:pagger-add="paggeradd" v-else-if="pager === 1" />
+          <Pagination2 v-on:pagger-add="paggeradd" v-on:user-data='UpdateBuyData' v-else-if="pager === 1" />
           <Pagination3 v-on:pagger-add="paggeradd" :buy_data='buy_data' :product_data="product_data"  v-else />
         </div>
       </div>
@@ -150,6 +151,7 @@
 import Pagination1 from "../components/Pagination/Pagination1/index";
 import Pagination2 from "../components/Pagination/Pagination2/index";
 import Pagination3 from "../components/Pagination/Pagination3/index";
+
 export default {
   name: "Home",
   components: {
@@ -160,6 +162,7 @@ export default {
   data() {
     return {
       pager: 0,
+      i : 0,
       compare: [
         {
           title: "外觀造型",
@@ -242,7 +245,7 @@ export default {
           {
             id:2,
             name: "雷神白鐵排氣管",
-            price: 3000,
+            price: 4000,
           },
         ],
         power_option: [
@@ -282,10 +285,20 @@ export default {
           case_option:1,
           model:"",
         },
-        user:{},
+        user:{
+          name: '',
+          address: '',
+          phone: '',
+          email: '',
+          connection: '',
+          remarks: '',
+        },
         pay:{}
       }
     };
+  },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll, true)
   },
   computed: {},
   methods: {
@@ -294,7 +307,20 @@ export default {
     },
     UpdateBuyData([key,val]){
       this.buy_data[key] = val
-    }
+    },
+    handleScroll(){
+      // 页面滚动距顶部距离
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || 
+                      document.body.scrollTop
+      var scroll = scrollTop - this.i;
+      this.i = scrollTop;
+      console.log(scrollTop)
+      if(scroll<0){
+        console.log('up')
+      }else{
+        console.log('down')
+          }      
+      },
   },
 };
 </script>

@@ -33,6 +33,15 @@ export default {
       this.$emit("pagger-add", 0);
     },
     next_step() {
+      let user_data = {
+        name : this.user_data.name,
+        address : this.user_data.address,
+        phone : this.user_data.phone,
+        email : this.user_data.email,
+        connection : this.user_data.connection,
+        remarks : this.user_data.remarks,
+      }
+      this.$emit("user-data", ["user",user_data])
       this.$emit("pagger-add", 2);
     },
   },
