@@ -6,7 +6,7 @@
       </div>
     </div>
 
-    <div class="section2">
+    <!-- <div class="section2">
       <div class="compare-title">
         Exhaust-產品比較
         <hr style="width: 100%; margin: 10px auto" />
@@ -67,8 +67,9 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- 閱讀性不佳 需修改 -->
+    <Compare />
 
     <div class="section3">
       <div class="section3-back"></div>
@@ -151,6 +152,7 @@
 import Pagination1 from "../components/Pagination/Pagination1/index";
 import Pagination2 from "../components/Pagination/Pagination2/index";
 import Pagination3 from "../components/Pagination/Pagination3/index";
+import Compare from '../components/Compare/index'
 
 export default {
   name: "Home",
@@ -158,6 +160,7 @@ export default {
     Pagination1,
     Pagination2,
     Pagination3,
+    Compare,
   },
   data() {
     return {
