@@ -38,8 +38,18 @@
                 </span>
             </div>
             <div class="container">
-                <img class="img sc600up" src="../../../assets/icon/model_big_BK999.png" alt="">
-                    <img class="img sc600dn" src="../../../assets/icon/model_big_BK999_mobile.png" alt="">
+                <img class="img sc600up" 
+                v-if = 'buy_data.product.category === 0'
+                src="../../../assets/icon/model_big_BK999.png" alt="">
+                <img class="img sc600dn" 
+                v-if = 'buy_data.product.category === 0'
+                src="../../../assets/icon/model_big_BK999_mobile.png" alt="">
+                <img class="img sc600up"
+                v-if = 'buy_data.product.category === 1'
+                src="../../../assets/icon/model_big_BX7.png" alt="">
+                <img class="img sc600dn" 
+                v-if = 'buy_data.product.category === 1'
+                src="../../../assets/icon/model_big_BX7_mobile.png" alt="">
                 <div class="tx">
                     <span>品名: {{buy_product_name}} </span>
                     <span>NT$ {{buy_product_name_price}} </span>
