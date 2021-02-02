@@ -1,0 +1,31 @@
+.section1 {
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        z-index: 1;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-color: transparent transparent transparent #0000000d;
+        border-style: solid solid solid solid;
+
+        /* 設定邊框大小可拼湊出任意形狀的三角形 */
+        border-width: 45vw 0px 0px 100vw;
+
+        /* 設定 width、height 可更好理解原理 */
+        height: 0px;
+        width: 0px;
+    }
+
+
+    .banner {
+        img {
+            width: 100%;
+            display: block;
+        }
+    }
+}

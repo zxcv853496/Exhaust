@@ -1,0 +1,14 @@
+<div id="Dialog" v-show="dialog.status">
+    <transition name="fade">
+        <div class="dialog_box" v-if="dialog.status">
+            <div class="dialog_header">
+                提示
+            </div>
+            <div class="dialog_body" v-html="dialog.msg">
+            </div>
+            <div class="dialog_footer">
+                <button class="btn close_btn" @click="CloseDialog">關閉</button>
+            </div>
+        </div>
+    </transition>
+</div>

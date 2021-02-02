@@ -3,15 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "dev": "vue-cli-service serve --mode dev",
+    "build--prod": "vue-cli-service build --mode prod",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.21.1",
+    "compression-webpack-plugin": "^1.1.12",
     "core-js": "^3.6.5",
     "node-sass": "^5.0.0",
     "sass-loader": "^10.1.0",
     "vue": "^2.6.11",
+    "vue-axios": "^3.2.4",
     "vue-router": "^3.2.0"
   },
   "devDependencies": {

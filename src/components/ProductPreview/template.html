@@ -1,0 +1,34 @@
+<div id="ProductPreview" class="section3">
+    <div class="section3-container">
+        <h3 class="section3-title">產品介紹<span>PRODUCT PREVIEW</span></h3>
+        <div class="banner">
+            <div class="backimg1" :class="{ active: product_show == 1 }">
+                <img class="img1" src="/img/product_01.png" alt="" />
+            </div>
+
+            <div class="backimg2" :class="{ active: product_show == 2 }">
+                <img class="img2" src="/img/product_02.png" alt="" />
+            </div>
+
+            <img src="/img/product_bg.jpg" class="bg" />
+        </div>
+
+        <div class="content">
+            <div class="content_nav">
+                <a :class="{ active: product_show == 1 }" @click="product_show = 1">黑鐵排氣管</a>
+                <i class="divider"></i>
+                <a :class="{ active: product_show == 2 }" @click="product_show = 2">白鐵排氣管</a>
+            </div>
+            <template v-for="(product, product_index) in product_preview">
+                <transition name="fade" :key="product.id">
+                    <div class="content_page" v-if="product_show == product_index + 1">
+                        <div class="card" v-for="item in product" :key="item.id">
+                            <h4>{{ item.title }}</h4>
+                            <p>{{ item.content }}</p>
+                        </div>
+                    </div>
+                </transition>
+            </template>
+        </div>
+    </div>
+</div>

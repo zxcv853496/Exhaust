@@ -2,46 +2,82 @@
 
 <script>
 export default {
-  components: {},
+  props: {
+    total_price: {
+      require: true
+    }
+  },
   data() {
     return {
-      connection_time: 1, //聯絡時間
-      user_data:{
+      user_data: {
         name: '',
         address: '',
         phone: '',
         email: '',
-        connection: '',
+        connection: '上午',
         remarks: '',
-      }
+      },
+      errors: []
     };
   },
 
   methods: {
-    product_connection_time: function (id) {
-      if (id == 1){
-        this.user_data.connection = '上午'
+    SetData(data) {
+      this.user_data.name = data.name
+      this.user_data.address = data.address
+      this.user_data.email = data.email
+      this.user_data.connection = data.connection
+      this.user_data.remarks = data.remarks
+    },
+    DataVaild() {
+      this.errors = []
+      if (this.validNotEmpty(this.user_data.address) != true) {
+        this.errors.push({
+          name: "address",
+          msg: this.validNotEmpty(this.user_data.address)
+        })
       }
-      if (id == 2){
-        this.user_data.connection = '中午'
+      if (this.validName(this.user_data.name) != true) {
+        this.errors.push({
+          name: "name",
+          msg: this.validName(this.user_data.name)
+        })
       }
-      if (id == 3){
-        this.user_data.connection = '下午'
+      if (this.validPhone(this.user_data.phone) != true) {
+        console.log(this.validPhone(this.user_data.phone))
+        this.errors.push({
+          name: "phone",
+          msg: this.validPhone(this.user_data.phone)
+        })
       }
+      if (this.validEmail(this.user_data.email) != true) {
+        this.errors.push({
+          name: "email",
+          msg: this.validEmail(this.user_data.email)
+        })
+      }
+
+      if (this.errors.length <= 0) {
+        this.NextStep()
+      }
+    },
+    UpdateData() {
+      let user_data = {
+        name: this.user_data.name,
+        address: this.user_data.address,
+        phone: this.user_data.phone,
+        email: this.user_data.email,
+        connection: this.user_data.connection,
+        remarks: this.user_data.remarks,
+      }
+      this.$emit("update-buy-data", ["user", user_data])
     },
     perv_step() {
+      this.UpdateData()
       this.$emit("pagger-add", 0);
     },
-    next_step() {
-      let user_data = {
-        name : this.user_data.name,
-        address : this.user_data.address,
-        phone : this.user_data.phone,
-        email : this.user_data.email,
-        connection : this.user_data.connection,
-        remarks : this.user_data.remarks,
-      }
-      this.$emit("user-data", ["user",user_data])
+    NextStep() {
+      this.UpdateData()
       this.$emit("pagger-add", 2);
     },
   },

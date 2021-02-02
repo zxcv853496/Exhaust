@@ -1,0 +1,55 @@
+#Dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(19, 19, 19, 0.694);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .fade-enter-active,
+    .fade-leave-active {
+        transition: all .5s;
+    }
+
+    .fade-enter,
+    .fade-leave-to
+
+    /* .fade-leave-active below version 2.1.8 */
+        {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+}
+
+#Dialog .dialog_box {
+    background-color: #fff;
+    width: 350px;
+    max-width: 90%;
+    box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.1);
+
+    .dialog_header {
+        padding: 20px;
+        font-size: 20px;
+    }
+
+    .dialog_body {
+        padding: 20px;
+        color: rgb(255, 183, 0);
+    }
+
+    .dialog_footer {
+        padding: 20px;
+        text-align: right;
+
+        .btn.close_btn {
+            padding: 8px 20px;
+            background-color: rgb(255, 183, 0);
+            color: #fff;
+            border: none;
+        }
+    }
+}

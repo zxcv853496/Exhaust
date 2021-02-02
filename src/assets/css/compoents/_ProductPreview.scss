@@ -1,0 +1,228 @@
+.section3 {
+    position: relative;
+    overflow: hidden;
+    background-color: #ffe100;
+
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        right: 0;
+        border-color: #ffffff transparent transparent transparent;
+        border-style: solid solid solid solid;
+
+        /* 設定邊框大小可拼湊出任意形狀的三角形 */
+        border-width: 45vw 100vw 0px 0px;
+
+        /* 設定 width、height 可更好理解原理 */
+        height: 0px;
+        width: 0px;
+    }
+
+    &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        z-index: 1;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-color: transparent transparent transparent #0000000b;
+        border-style: solid solid solid solid;
+
+        /* 設定邊框大小可拼湊出任意形狀的三角形 */
+        border-width: 45vw 0px 0px 100vw;
+
+        /* 設定 width、height 可更好理解原理 */
+        height: 0px;
+        width: 0px;
+    }
+
+    .section3-container {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 100px auto;
+
+        @media (max-width:1000px) {
+            margin: 100px auto;
+            margin-bottom: 0px;
+        }
+
+        .section3-title {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 40px;
+            font-size: 44px;
+            font-weight: 600;
+            text-align: center;
+
+            span {
+                display: block;
+                font-size: 16px;
+                font-weight: bold;
+                margin-top: 10px;
+            }
+
+            @media (max-width:600px) {
+                font-size: 34px;
+                padding: 40px 0;
+            }
+        }
+
+        .banner {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            width: 1000px;
+            max-width: 100%;
+            margin: 0 auto;
+
+            .backimg1 {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                clip-path: polygon(0 0, 0 0, 0% 100%, 0 100%);
+                transition-property: clip-path;
+                transition-duration: 1s;
+
+                &.active {
+                    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+                    z-index: 10;
+                }
+
+            }
+
+            .backimg2 {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+                transition: 1s;
+                overflow: hidden;
+
+                &.active {
+                    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                }
+            }
+
+            img {
+                width: 100%;
+            }
+
+        }
+
+        .content {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 20px;
+
+            .content_nav {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                a {
+                    cursor: pointer;
+                    transition: all .3s;
+                    font-size: 18px;
+                    font-weight: bold;
+                    position: relative;
+                    padding: 5px 10px;
+                    margin: 0px 40px;
+                    color: #000;
+
+                    &::before {
+                        position: absolute;
+                        z-index: -1;
+                        content: '';
+                        top: 0;
+                        right: -15px;
+                        bottom: 0;
+                        left: -15px;
+                        border: 3px solid #000;
+                        transform: skew(-30deg);
+                    }
+
+
+
+                    &:hover {
+                        color: rgb(255, 119, 0);
+
+                        &::before {
+                            background-color: #000;
+                        }
+                    }
+
+
+
+                    &.active {
+                        color: rgb(255, 119, 0);
+
+                        &::before {
+                            position: absolute;
+                            z-index: -1;
+                            content: '';
+                            top: 0;
+                            right: -15px;
+                            bottom: 0;
+                            left: -15px;
+                            background: #000;
+                            transform: skew(-30deg);
+                        }
+                    }
+                }
+
+                .divider {
+                    height: 25px;
+                    width: 2px;
+                    background-color: #000;
+                    display: inline-block;
+                    transform: skew(-30deg);
+                }
+            }
+
+            .content_page {
+                width: 800px;
+                max-width: 100%;
+                margin: 20px auto;
+
+                .card {
+                    padding-bottom: 30px;
+                    margin-top: 20px;
+                    border-bottom: 1px solid #000;
+
+                    h4 {
+                        font-size: 24px;
+                        font-weight: bold;
+                        margin-bottom: 10px;
+                        padding-left: 15px;
+                        position: relative;
+
+                        &::before {
+                            position: absolute;
+                            content: "-";
+                            left: 0;
+                            color: rgb(255, 119, 0);
+                        }
+                    }
+
+                    p {
+                        font-weight: normal;
+                        color: #444;
+                    }
+                }
+            }
+
+
+        }
+    }
+}

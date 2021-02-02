@@ -1,326 +1,63 @@
 <template>
   <div class="home">
-    <div class="section1">
-      <div class="banner">
-        <img src="@/assets/icon/雷神.jpg" alt="" />
-      </div>
-    </div>
+    <Dialog :dialog="dialog" v-on:set-dialog="SetDialog" />
+    <Loading :loading="loading" />
 
-    <div class="section2">
-      <div class="compare-title">
-        Exhaust-產品比較
-        <hr style="width: 100%; margin: 10px auto" />
-      </div>
-      <div class="compare-container-title">
-        <div class="compare-product-container">
-          <div class="tx self">自己的品牌</div>
-          <div class="img">
-            <img src="../assets/icon/1.png" alt="" />
-          </div>
-        </div>
-        <div class="compare-product-container">
-          <div class="tx">其他品牌</div>
-          <div class="img">
-            <img src="../assets/icon/2.png" alt="" />
-          </div>
-        </div>
-      </div>
-      <div class="compare">
-        <div
-          class="compare-list"
-          v-for="(item, item_index) in compare"
-          :key="item_index"
-        >
-          <div class="title">
-            <div class="small-title">
-              {{ item.title }}
-              <a @click="item.open = !item.open">
-                <img
-                  :class="{ active: item.open }"
-                  src="https://img.icons8.com/plumpy/24/000000/plus.png"
-                  />
-              </a>
-            </div>
-          </div>
-          <div class="hr">
-            <hr />
-          </div>
-          <div class="compare_container_main" v-show="item.open">
-            <div
-              class="compare-container"
-              v-for="(item_content, item_content_index) in item.content"
-              :key="item_content_index"
-            >
-              <div class="compare-content">
-                {{ item_content.name }}
-              </div>
-              <div class="tick">
-                <div v-if="!item_content.product_1" class="space"></div>
-                <div class="img">
-                  <img
-                    src="https://img.icons8.com/fluent/48/000000/double-tick.png"
-                  />
-                </div>
-                <div v-if="item_content.product_1" class="space"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- 閱讀性不佳 需修改 -->
+    <MainBanner />
 
-    <div class="section3">
-      <div class="section3-back"></div>
-      <div class="section3-container">
-        <div class="section3-title">Exhaust-產品圖</div>
-        <div class="banner">
-          <div class="backimg1" :class="{ active: section3_banner1 == true }">
-            <img class="img1" v-bind:src="bg_1" alt="" />
-            <img class="img1 mobile" v-bind:src="bg_1_mobile" alt="" />
-            <div class="content-title">
-              <span
-                ><a @click="section3_banner1 = !section3_banner1"
-                  >雷神白鐵</a
-                ></span
-              >
-            </div>
-            <div class="container-content">
-              <div class="content-back">
-                <div class="content" v-show="section3_banner1">
-                  <p>焊接</p>
-                  <span>每一道焊接點都是牛王工廠師傅用心的結晶</span>
-                  <p>材質介紹</p>
-                  <span>不鏽鋼304材質因含鎳成分故抗氧化及耐蝕效果佳</span>
-                  <p>彩繪鐵牌</p>
-                  <span>隨管皆會附贈精緻的白鐵雷射雕刻牌</span>
-                  <p>前段白鐵</p>
-                  <span>抗蝕性較為優異，外觀上增添質感</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="backimg2" :class="{ active: section3_banner2 == true }">
-            <img class="img2" v-bind:src="bg_2" alt="" />
-            <img class="img2 mobile" v-bind:src="bg_2_mobile" alt="" />
-            <div class="content-title">
-              <span
-                ><a @click="section3_banner2 = !section3_banner2"
-                  >雷神黑鐵</a
-                ></span
-              >
-            </div>
-            <div class="container-content">
-              <div class="content-back">
-                <div class="content" v-show="section3_banner2">
-                  <p>焊接</p>
-                  <span>每一道焊接點都是牛王工廠師傅用心的結晶</span>
-                  <p>材質介紹</p>
-                  <span>不鏽鋼304材質因含鎳成分故抗氧化及耐蝕效果佳</span>
-                  <p>彩繪鐵牌</p>
-                  <span>隨管皆會附贈精緻的白鐵雷射雕刻牌</span>
-                  <p>前段白鐵</p>
-                  <span>抗蝕性較為優異，外觀上增添質感</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Compare />
 
+    <ProductPreview />
 
-    <div class="section4">
-      <div class="main container">
-        <div class="main title">
-          Exhaust-購買
-          <hr style="width: 100%; margin: 10px auto" />
-        </div>
-        <div class="container">
-          <Pagination1 v-on:pagger-add="paggeradd" v-on:update-buy-data="UpdateBuyData" :product_data="product_data" v-if="pager === 0" />
-          <Pagination2 v-on:pagger-add="paggeradd" v-on:user-data='UpdateBuyData' v-else-if="pager === 1" />
-          <Pagination3 v-on:pagger-add="paggeradd" :buy_data='buy_data' :product_data="product_data"  v-else />
-        </div>
-      </div>
-    </div>
+    <OrderForm v-on:set-loading="SetLoading" v-on:set-dialog="SetDialog" />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import Pagination1 from "../components/Pagination/Pagination1/index";
-import Pagination2 from "../components/Pagination/Pagination2/index";
-import Pagination3 from "../components/Pagination/Pagination3/index";
+import MainBanner from '../components/MainBanner/index'
+import Compare from '../components/Compare/index'
+import ProductPreview from '../components/ProductPreview/index'
+import OrderForm from '../components/OrderForm/index'
+import Loading from '../components/YxLoading/index'
+import Dialog from '../components/YxDialog/index'
 
 export default {
   name: "Home",
   components: {
-    Pagination1,
-    Pagination2,
-    Pagination3,
+    Compare,
+    Loading,
+    Dialog,
+    MainBanner,
+    ProductPreview,
+    OrderForm
   },
   data() {
     return {
-      pager: 0,
-      i : 0,
-      compare: [
-        {
-          title: "外觀造型",
-          open: true,
-          content: [
-            {
-              name: "防燙蓋選擇",
-              product_1: true,
-              product_2: false,
-            },
-            {
-              name: "顏色選擇",
-              product_1: false,
-              product_2: true,
-            },
-          ],
-        },
-        {
-          title: "配備",
-          open: true,
-          content: [
-            {
-              name: "側繞、下繞選擇",
-              product_1: true,
-              product_2: false,
-            },
-            {
-              name: "到處繞選擇",
-              product_1: false,
-              product_2: true,
-            },
-          ],
-        },
-        {
-          title: "材質",
-          open: true,
-          content: [
-            {
-              name: "碳纖維",
-              product_1: true,
-              product_2: true,
-            },
-            {
-              name: "鈦合金",
-              product_1: false,
-              product_2: true,
-            },
-          ],
-        },
-        {
-          title: "其他",
-          open: true,
-          content: [
-            {
-              name: "價錢",
-              product_1: true,
-              product_2: false,
-            },
-            {
-              name: "政府驗證",
-              product_1: true,
-              product_2: false,
-            },
-          ],
-        },
-      ],
-      bg_1: require("../assets/icon/model_big_BK999.png"),
-      bg_1_mobile: require("../assets/icon/model_big_BK999_mobile.png"),
-      bg_2: require("../assets/icon/model_big_BX7.png"),
-      bg_2_mobile: require("../assets/icon/model_big_BX7_mobile.png"),
-      section3_banner1: false,
-      section3_banner2: false,
-      product_data: {
-        products: [
-          {
-            id:1,
-            name: "雷神黑鐵排氣管",
-            price: 3000,
-          },
-          {
-            id:2,
-            name: "雷神白鐵排氣管",
-            price: 4000,
-          },
-        ],
-        power_option: [
-          {
-            id:1,
-            name: "原廠引擎",
-            price: 0,
-          },
-          {
-            id:2,
-            name: "改缸引擎",
-            price: 1000,
-          },
-        ],
-        case_option: [
-          {
-            id:1,
-            name: "卡夢",
-            price: 0,
-          },
-          {
-            id:2,
-            name: "彩鈦",
-            price: 300,
-          },
-          {
-            id:3,
-            name: "KOSO",
-            price: 500,
-          },
-        ],
-      },
-      buy_data:{
-        product:{
-          category:1,
-          power_option:1,
-          case_option:1,
-          model:"",
-        },
-        user:{
-          name: '',
-          address: '',
-          phone: '',
-          email: '',
-          connection: '',
-          remarks: '',
-        },
-        pay:{}
+      loading: false,
+      dialog: {
+        msg: "",
+        status: false
       }
     };
   },
-  mounted() {
-    window.addEventListener('scroll', this.handleScroll, true)
-  },
-  computed: {},
   methods: {
-    paggeradd: function (val) {
-      this.pager = val
+    SetLoading(action) {
+      this.loading = action
     },
-    UpdateBuyData([key,val]){
-      this.buy_data[key] = val
+    SetDialog([action, msg]) {
+      this.dialog.msg = msg
+      this.dialog.status = action
     },
-    handleScroll(){
-      // 页面滚动距顶部距离
-      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || 
-                      document.body.scrollTop
-      var scroll = scrollTop - this.i;
-      this.i = scrollTop;
-      console.log(scrollTop)
-      if(scroll<0){
-        console.log('up')
-      }else{
-        console.log('down')
-          }      
-      },
+  },
+  mounted() {
+    if (this.$route.query.status) {
+      if (this.$route.query.status == "order_finish") {
+        this.SetDialog([true, "感謝您的訂購！您的訂單編號為:<br>" + this.$route.query.order_no + "<br>若有任何問題請恰粉絲專頁私訊"])
+      }
+      else if (this.$route.query.status == "payerror") {
+        this.SetDialog([true, "付款時發生錯誤，若問題持續發生請至粉絲專頁私訊。"])
+      }
+    }
   },
 };
 </script>

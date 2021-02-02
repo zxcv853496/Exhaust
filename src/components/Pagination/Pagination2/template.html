@@ -1,53 +1,74 @@
-<div class="pagination2">
-    <div class="title l">
-        購買者資訊  
-    </div>
-    <div class="container l">
-        <div class="content name">
-            <span>姓名</span>
-            <input v-model = 'user_data.name'  type="text" >
-        </div>
-        <div class="content phone">
-            <span>電話</span>
-            <input v-model = 'user_data.phone' type="text" >
-        </div>
-        <div class="content address">
-            <span>收件地址</span>
-            <input v-model = 'user_data.address' type="text" >
-        </div>
-        <div class="content email">
-            <span>電子信箱</span>
-            <input v-model = 'user_data.email' type="text" >
-        </div>
-        <div class="content connection">
-            <span class="title-span" >可連絡時間</span>
-            <div class="container-connection">      
-                <span @click='product_connection_time(1)'
-                :class="{active:user_data.connection == '上午'}">
-                    上午
-                </span>
-                <span @click='product_connection_time(2)'
-                :class="{active:user_data.connection == '中午'}">
-                    中午
-                </span>
-                <span @click='product_connection_time(3)'
-                :class="{active:user_data.connection == '下午'}">
-                    下午
-                </span>     
+<div class="pagination">
+    <div class="container">
+        <h3 class="form_title">
+            訂購人資訊
+        </h3>
+
+        <div class="product user_form_group">
+            <h4 class="title">姓名</h4>
+            <div class="option_container">
+                <input v-model="user_data.name" type="text" name="name" placeholder="請輸入您的姓名">
+                <p class="error" v-if="errors.filter(item=>item.name == 'name').length > 0">
+                    {{errors.filter(item=>item.name == 'name')[0].msg}}</p>
             </div>
         </div>
-        <div class="content remarks">
-            <span>備註</span>
-            <textarea v-model = 'user_data.remarks' name="" id="" cols="30" rows="10" ></textarea>
+
+        <div class="product user_form_group">
+            <h4 class="title">電話</h4>
+            <div class="option_container">
+                <input v-model="user_data.phone" type="text" name="phone" placeholder="請輸入您的電話">
+                <p class="error" v-if="errors.filter(item=>item.name == 'phone').length > 0">
+                    {{errors.filter(item=>item.name == 'phone')[0].msg}}</p>
+            </div>
         </div>
-    </div>
-    <div class="button_box">
-        <span class="next_btn" @click="perv_step">
-            <a>上一步</a>
-        </span>
-        <span class="next_btn" @click="next_step">
-            <a>下一步</a>
-        </span>
+
+        <div class="product user_form_group">
+            <h4 class="title">收件地址</h4>
+            <div class="option_container">
+                <input v-model="user_data.address" type="text" name="address" placeholder="請輸入收件地址">
+                <p class="error" v-if="errors.filter(item=>item.name == 'address').length > 0">
+                    {{errors.filter(item=>item.name == 'address')[0].msg}}</p>
+            </div>
+        </div>
+
+        <div class="product user_form_group">
+            <h4 class="title">電子信箱</h4>
+            <div class="option_container">
+                <input v-model="user_data.email" type="text" name="email" placeholder="請輸入電子信箱">
+                <p class="error" v-if="errors.filter(item=>item.name == 'email').length > 0">
+                    {{errors.filter(item=>item.name == 'email')[0].msg}}</p>
+            </div>
+        </div>
+
+        <div class="product setting user_form_group">
+            <h4 class="title">可聯絡時間</h4>
+            <div class="option_container">
+                <label class="card">
+                    <input type="radio" name="product_connection_time" value="上午" v-model="user_data.connection" />
+                    <p>上午</p>
+                </label>
+                <label class="card">
+                    <input type="radio" name="product_connection_time" value="中午" v-model="user_data.connection" />
+                    <p>中午</p>
+                </label>
+                <label class="card">
+                    <input type="radio" name="product_connection_time" value="下午" v-model="user_data.connection" />
+                    <p>下午</p>
+                </label>
+            </div>
+        </div>
+
+        <div class="product user_form_group">
+            <h4 class="title">備註</h4>
+            <div class="option_container">
+                <textarea v-model='user_data.remarks' name="comment"></textarea>
+            </div>
+        </div>
+
+        <div class="form_footer">
+            <button class="next_btn" @click="perv_step">上一步</button>
+            <button class="next_btn" @click="DataVaild">下一步</button>
+        </div>
+
     </div>
 </div>
-
