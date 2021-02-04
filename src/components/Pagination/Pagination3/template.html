@@ -69,7 +69,7 @@
             </div>
 
             <div class="price_box detail_info">
-                <h4 class="title">付款資料</h4>
+                <h4 class="title">付款資料<span v-if="pay_way==1">(貨到付款)</span></h4>
                 <p>
                     <strong>訂單總金額:</strong>
                     <template v-if="pay_way == 3">NT$ {{ total_price_with_installment }}</template>
@@ -89,6 +89,6 @@
 
     <div class="form_footer">
         <button class="next_btn" @click="perv_step">上一步</button>
-        <button class="next_btn" @click="next_step">送出訂單</button>
+        <button class="next_btn checkout_btn" @click="next_step">送出訂單</button>
     </div>
 </div>

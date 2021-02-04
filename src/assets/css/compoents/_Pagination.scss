@@ -3,7 +3,7 @@
     max-width: 100%;
     margin: auto;
     background-color: rgba(255, 255, 255, 0.646);
-    padding: 30px;
+    padding: 10px;
     position: relative;
     z-index: 5;
 }
@@ -114,6 +114,7 @@
                 border: none;
                 padding: 10px 14px;
                 width: 100%;
+                font-size: 16px;
 
                 &:focus {
                     outline: none;
@@ -226,6 +227,10 @@
             .title {
                 padding-bottom: 10px;
                 border-bottom: 1px solid #eee;
+
+                span {
+                    font-size: 14px;
+                }
             }
 
             p {

@@ -30,6 +30,7 @@ export default {
       this.user_data.remarks = data.remarks
     },
     DataVaild() {
+      this.$emit("scroll-to-top")
       this.errors = []
       if (this.validNotEmpty(this.user_data.address) != true) {
         this.errors.push({
@@ -44,7 +45,6 @@ export default {
         })
       }
       if (this.validPhone(this.user_data.phone) != true) {
-        console.log(this.validPhone(this.user_data.phone))
         this.errors.push({
           name: "phone",
           msg: this.validPhone(this.user_data.phone)
@@ -74,6 +74,7 @@ export default {
     },
     perv_step() {
       this.UpdateData()
+      this.$emit("scroll-to-top")
       this.$emit("pagger-add", 0);
     },
     NextStep() {

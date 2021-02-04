@@ -101,13 +101,13 @@ export default {
       let user_data = this.buy_data.user
       let installment = 0
       let installment_price = 0
-      let total_price = 0
+      let total_price = this.total_price
       if (user_data.remarks == "") {
         user_data.remarks = "-"
       }
-      if (this.buy_data.pay.pay_way == '分期付款') {
+      if (this.buy_data.pay.pay_way == "信用卡分期付款") {
         installment = this.buy_data.pay.installment
-        installment_price = this.total_price * this.buy_data.pay_way.percent
+        installment_price = Math.ceil(this.total_price * this.buy_data.pay.percent)
       }
       if (this.buy_data.pay.pay_option == '訂金付款') {
         total_price = Math.ceil(this.total_price / 2)
@@ -138,59 +138,94 @@ export default {
           total_price: total_price + parseInt(installment_price),
         },
       }
-      this.$emit("set-loading", true)
-      //this.$ga.event('訂單', '送出', data.product.name, data.pay.total_price)
+      this.$store.commit('SetLoading', true)
+
+      const vm = this;
+      vm.$gtm.trackEvent({
+        event: 'order_create',
+        category: '訂單事件', // 類別 字元(必填)
+        action: 'create', // 動作 字元(必填)
+        label: "建立訂單", // 標籤 字元(選填)
+        value: data.pay.total_price, // 標籤 數字(選填)
+        product_price: data.pay.total_price,
+        product_name: data.product.name,
+        case_option: data.product.case_option,
+        power_option: data.product.power_option,
+        pay_way: data.pay.pay_way,
+        pay_option: data.pay.pay_option
+      });
 
       if (this.buy_data.pay.pay_way == '貨到付款') {
-        this.axios
-          .post(
-            process.env.VUE_APP_BASE_API + 'COD_Payment.php',
-            JSON.stringify(data)
-          )
-          .then((response) => {
-            console.log(response.data)
-            this.$emit("set-loading", false)
-            this.$emit("set-dialog", [true, "訂單已建立，將會有專人與您聯絡!"])
-          })
+        this.SendCODOrder(data)
       }
       else {
-        this.axios
-          .post(
-            process.env.VUE_APP_BASE_API + 'encrypt.php',
-            JSON.stringify(data)
-          )
-          .then((response) => {
-            this.$emit("set-loading", false)
-            let newebpay_data = JSON.parse(response.data.msg)
-            let method = 'post'
-            let params = {
-              MerchantID: newebpay_data.MerchantID,
-              TradeInfo: newebpay_data.TradeInfo,
-              TradeSha: newebpay_data.TradeSha,
-              Version: newebpay_data.Version,
-            }
-            var form = document.createElement('form')
-            form.setAttribute('method', method)
-            form.setAttribute(
-              'action',
-              // 'https://core.newebpay.com/MPG/mpg_gateway'
-              'https://ccore.newebpay.com/MPG/mpg_gateway'
-            )
-
-            Object.keys(params).forEach((item) => {
-              let hiddenField = document.createElement('input')
-              hiddenField.setAttribute('type', 'hidden')
-              hiddenField.setAttribute('name', item)
-              hiddenField.setAttribute('value', params[item])
-
-              form.appendChild(hiddenField)
-            })
-
-            document.body.appendChild(form)
-            form.submit()
-          })
+        this.SendNewebPayOrder(data)
       }
     },
+    SendCODOrder(data) {
+      this.axios
+        .post(
+          process.env.VUE_APP_BASE_API + 'COD_Payment.php',
+          JSON.stringify(data)
+        )
+        .then((response) => {
+          this.$store.commit('SetLoading', false)
+          this.$router.replace({
+            'query': {
+              'status': "order_finish",
+              'order_no': response.data
+            }
+          });
+          this.CheckOrderRecord()
+          this.$store.commit("SetDialog", [true, "感謝您的訂購！您的訂單編號為:<br><strong>" + this.$route.query.order_no + "</strong><br>若有任何問題請恰粉絲專頁私訊"])
+        })
+    },
+    SendNewebPayOrder(data) {
+      this.axios
+        .post(
+          process.env.VUE_APP_BASE_API + 'encrypt.php',
+          JSON.stringify(data)
+        )
+        .then((response) => {
+          this.$store.commit('SetLoading', true)
+          let newebpay_data = JSON.parse(response.data.msg)
+          let method = 'post'
+          let params = {
+            MerchantID: newebpay_data.MerchantID,
+            TradeInfo: newebpay_data.TradeInfo,
+            TradeSha: newebpay_data.TradeSha,
+            Version: newebpay_data.Version,
+          }
+          var form = document.createElement('form')
+          form.setAttribute('method', method)
+          form.setAttribute(
+            'action',
+            'https://core.newebpay.com/MPG/mpg_gateway'
+            //'https://ccore.newebpay.com/MPG/mpg_gateway'
+          )
+
+          Object.keys(params).forEach((item) => {
+            let hiddenField = document.createElement('input')
+            hiddenField.setAttribute('type', 'hidden')
+            hiddenField.setAttribute('name', item)
+            hiddenField.setAttribute('value', params[item])
+
+            form.appendChild(hiddenField)
+          })
+
+          document.body.appendChild(form)
+          form.submit()
+        })
+    },
+    ScrollToFormTop() {
+      this.menuopen = false
+      let el_top = document.getElementById('OrderForm').offsetTop;
+      window.scrollTo({
+        top: el_top - 80,
+        left: 0,
+        behavior: "smooth"
+      })
+    }
   },
   computed: {
     total_price() {
@@ -208,6 +243,6 @@ export default {
     case_option_name() {
       return this.product_data.case_option.filter(item => item.id == this.buy_data.product.case_option)[0].name
     }
-  }
+  },
 }
 </script>

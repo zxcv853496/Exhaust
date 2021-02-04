@@ -3,11 +3,6 @@
 <script>
 export default {
   name: "Loading",
-  props: {
-    loading: {
-      require
-    }
-  }
 }
 </script>
 

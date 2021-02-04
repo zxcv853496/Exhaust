@@ -74,10 +74,12 @@ export default {
       this.$emit("update-buy-data", ["pay", pay_data])
     },
     perv_step() {
+      this.$emit("scroll-to-top")
       this.UpdateData()
       this.$emit("pagger-add", 1);
     },
     next_step() {
+      this.$emit("scroll-to-top")
       this.UpdateData()
       this.$emit("send-order")
     }
@@ -94,22 +96,22 @@ export default {
   },
   computed: {
     buy_product_name() {
-      return this.product_data.products[this.buy_data.product.category].name
+      return this.product_data.products.filter(item => item.id == this.buy_data.product.category)[0].name
     },
     buy_product_name_price() {
-      return this.product_data.products[this.buy_data.product.category].price
+      return this.product_data.products.filter(item => item.id == this.buy_data.product.category)[0].price
     },
     buy_product_case_option() {
-      return this.product_data.case_option[this.buy_data.product.case_option].name
+      return this.product_data.case_option.filter(item => item.id == this.buy_data.product.case_option)[0].name
     },
     buy_product_case_option_price() {
-      return this.product_data.case_option[this.buy_data.product.case_option].price
+      return this.product_data.case_option.filter(item => item.id == this.buy_data.product.case_option)[0].price
     },
     buy_product_power_option() {
-      return this.product_data.power_option[this.buy_data.product.power_option].name
+      return this.product_data.power_option.filter(item => item.id == this.buy_data.product.power_option)[0].name
     },
     buy_product_power_option_price() {
-      return this.product_data.power_option[this.buy_data.product.power_option].price
+      return this.product_data.power_option.filter(item => item.id == this.buy_data.product.power_option)[0].price
     },
     total_price_with_installment() {
       let percent = this.cash_on.filter(item => item.id == 3)[0].installment.filter(item => item.id == this.installment)[0].percent

@@ -140,6 +140,37 @@ class SqlAction
         return mysqli_fetch_assoc($sql_result);
     }
 
+    public static function getorderRecord(String $order_no)
+    {
+        global $conn;
+        $sql = "SELECT * FROM `order` WHERE `order_no` = '$order_no'";
+        $result = mysqli_query($conn, $sql);
+
+        if ($result->num_rows > 0) {
+            // output data of each row
+            $return_array = array();
+            while ($row = $result->fetch_assoc()) {
+                $return_array = $row;
+            }
+
+            return $return_array;
+        } else {
+            return "0 results";
+        }
+    }
+
+    public static function updateorderRecord(String $order_no)
+    {
+        global $conn;
+        $sql = "UPDATE `order` SET `is_record` = true WHERE `order_no` = '$order_no'";
+
+        if ($conn->query($sql) === true) {
+            return "success";
+        } else {
+            return "Error: " . $sql . "<br>" . $conn->error;
+        }
+    }
+
     public static function createOrder($order_no, $user, $product, $pay)
     {
         global $conn;

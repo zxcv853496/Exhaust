@@ -15,9 +15,9 @@
 
         <div class="content">
             <div class="content_nav">
-                <a :class="{ active: product_show == 1 }" @click="product_show = 1">黑鐵排氣管</a>
+                <a :class="{ active: product_show == 1 }" class="exhaust_preview_1" @click="product_show = 1">黑鐵排氣管</a>
                 <i class="divider"></i>
-                <a :class="{ active: product_show == 2 }" @click="product_show = 2">白鐵排氣管</a>
+                <a :class="{ active: product_show == 2 }" class="exhaust_preview_2" @click="product_show = 2">白鐵排氣管</a>
             </div>
             <template v-for="(product, product_index) in product_preview">
                 <transition name="fade" :key="product.id">

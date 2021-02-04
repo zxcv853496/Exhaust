@@ -6,12 +6,12 @@
         </h3>
         <div class="container">
             <Pagination1 ref="ProductForm" v-on:pagger-add="paggeradd" v-on:update-buy-data="UpdateBuyData"
-                :product_data="product_data" v-show="pager == 0" />
+                v-on:scroll-to-top="ScrollToFormTop" :product_data="product_data" v-show="pager == 0" />
             <Pagination2 ref="UserForm" v-on:pagger-add="paggeradd" v-on:update-buy-data="UpdateBuyData"
-                :total_price="total_price" v-show="pager == 1" />
+                v-on:scroll-to-top="ScrollToFormTop" :total_price="total_price" v-show="pager == 1" />
             <Pagination3 ref="PayForm" v-on:pagger-add="paggeradd" v-on:update-buy-data="UpdateBuyData"
-                v-on:send-order="SendOrder" :buy_data="buy_data" :product_data="product_data" :total_price="total_price"
-                v-show="pager == 2" />
+                v-on:scroll-to-top="ScrollToFormTop" v-on:send-order="SendOrder" :buy_data="buy_data"
+                :product_data="product_data" :total_price="total_price" v-show="pager == 2" />
         </div>
     </div>
 </div>

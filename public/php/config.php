@@ -17,13 +17,13 @@ $PayWayArray = [
 //藍新
 $NewebpayConfig = [
     //正式版
-    // 'HashKey' => 'DQ8PJ4pMGtOHLcBy5TqELUqBJsTWD5fA',
-    // 'HashIV' => 'P7csS1IjPZPCXIVC',
-    // 'MerchantID' => 'MS3334763824',
+    'HashKey' => 'mZpMJ7lsh7KQepPhw0WwD7p2N0Abl2Zx',
+    'HashIV' => 'Pzwy7xeRNnoMHX2C',
+    'MerchantID' => 'MS3447602078',
     //測試擁
-    'HashKey' => 'ZbW2lV8xRGSxRqrgkAU9eCC0HJTzw5qI',
-    'HashIV' => 'CDfM1PeFatBW16EP',
-    'MerchantID' => 'MS19513031',
+    // 'HashKey' => 'ZbW2lV8xRGSxRqrgkAU9eCC0HJTzw5qI',
+    // 'HashIV' => 'CDfM1PeFatBW16EP',
+    // 'MerchantID' => 'MS19513031',
     'Version' => '1.5',
 ];
 

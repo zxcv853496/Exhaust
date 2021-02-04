@@ -43,6 +43,7 @@ export default {
         case_option: this.case_option,
         model: this.model,
       }
+      this.$emit("scroll-to-top")
       this.$emit("update-buy-data", ["product", buy_data])
       this.$emit("pagger-add", 1)
     }

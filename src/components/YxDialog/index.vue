@@ -3,13 +3,15 @@
 <script>
 export default {
   name: "Dialog",
-  props: {
-    dialog: { require: true }
-  },
   methods: {
     CloseDialog() {
-      this.$emit("set-dialog", [false, ""])
+      this.$store.commit("SetDialog", [false, ""])
       this.$router.replace({ 'query': null });
+    }
+  },
+  computed: {
+    dialog() {
+      return this.$store.state.dialog
     }
   }
 }

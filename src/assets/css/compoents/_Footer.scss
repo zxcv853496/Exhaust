@@ -1,27 +1,33 @@
 .footer {
     margin-top: 100px;
+
     .main.container {
         width: 100%;
         font-weight: 300;
+
         .border-top {
             background-color: #fdde00;
             width: 0%;
             height: 3px;
             transition: width 0.5s;
         }
+
         &:hover {
             .border-top {
                 width: 100%;
             }
         }
+
         &.top {
             background-color: rgb(0, 0, 0);
             position: relative;
             color: rgb(255, 255, 255);
             text-align: center;
+
             @media (max-width: 1000px) {
                 height: 100%;
             }
+
             .back-color {
                 height: 250px;
                 width: 250px;
@@ -31,7 +37,8 @@
                 top: -125px;
                 left: -125px;
                 transition: top 0.6s, left 0.6s, background-color 0.6s, transform 0.6s;
-                // transition: top .6s;
+                z-index: 10;
+
                 @media (max-width: 725px) {
                     height: 150px;
                     width: 150px;
@@ -45,36 +52,46 @@
             max-width: 1200px;
             margin: auto;
             padding: 20px 0;
+
             @media (max-width:1300px) {
                 padding: 0 0 20px 0;
             }
+
             .container-main {
                 color: rgb(200, 200, 200);
                 display: flex;
                 flex-wrap: wrap;
+                align-items: center;
                 justify-content: space-between;
                 padding-left: 50px;
+
                 @media (max-width: 1300px) {
                     padding: 0 50px;
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
                 }
+
                 @media (max-width: 725px) {
                     padding: 0 70px;
                 }
+
                 @media (max-width: 650px) {
                     padding: 0 34px;
                 }
+
                 @media (max-width: 500px) {
                     padding: 50px 0 0 0px;
                 }
+
                 .container {
                     text-align: left;
+
                     .title {
                         font-size: 24px;
                         padding-bottom: 10px;
                         color: #fbc43b;
+
                         @media (max-width:580px) {
                             text-align: center;
                         }
@@ -83,14 +100,17 @@
                     .content {
                         height: 100%;
                         display: flex;
+
                         @media (max-width:580px) {
-                            p{
+                            p {
                                 margin: 0 auto;
                             }
                         }
+
                         span {
                             font-weight: 300;
                         }
+
                         hr {
                             @media (max-width: 1000px) {
                                 margin: 0 auto;
@@ -98,25 +118,29 @@
                             }
                         }
                     }
+
                     &.contact {
                         margin-right: 30px;
-                      
-                        @media (max-width: 768px){
+
+                        @media (max-width: 768px) {
                             margin-right: 0px;
                         }
-                      
+
                         @media (max-width: 580px) {
                             padding-top: 20px;
                             flex: auto;
                             width: 100%;
                             text-align: center;
                         }
+
                         .tx {
                             color: rgb(200, 200, 200);
+
                             @media (max-width:580px) {
                                 display: inline-block;
                                 text-align: left;
                             }
+
                             p:nth-child(1) {
                                 &::before {
                                     content: "\f095";
@@ -134,6 +158,7 @@
                                     margin-right: 10px;
                                 }
                             }
+
                             p:nth-child(3) {
                                 &::before {
                                     content: "\f3c5";
@@ -144,31 +169,41 @@
                             }
                         }
                     }
-                    &.img{
+
+                    &.img {
                         font-size: 50px;
                         align-self: flex-end;
+
                         @media(max-width:1300px) {
-                        align-self: inherit;
+                            align-self: inherit;
                         }
+
                         @media (max-width:768px) {
                             flex: auto;
                             width: 100%;
                             display: flex;
-                            justify-content: space-between;
+                            justify-content: center;
+
+                            a::before {
+                                font-size: 36px;
+                            }
                         }
-                        a{
+
+                        a {
                             margin: 0 10px;
                         }
-                        a:nth-child(1){
-                            &::before{
-                                content:'\f082';
+
+                        a:nth-child(1) {
+                            &::before {
+                                content: '\f082';
                                 font-family: 'FontAwesome';
                                 color: #fbc43b;
                             }
                         }
-                        a:nth-child(2){
-                            &::before{
-                                content:'\e055';
+
+                        a:nth-child(2) {
+                            &::before {
+                                content: '\f16d';
                                 font-family: 'FontAwesome';
                                 color: #fbc43b;
                             }
@@ -176,28 +211,34 @@
                     }
                 }
             }
+
             .logo {
                 align-self: center;
+
                 @media (max-width:1300px) {
                     text-align: center;
                     flex: auto;
                     width: 100%;
                 }
+
                 img {
                     width: 300px;
+
                     @media (max-width: 1300px) {
                         width: 500px;
                     }
+
                     @media (max-width: 725px) {
                         width: 300px;
                     }
+
                     @media (max-width: 340px) {
                         width: 250px;
                     }
                 }
             }
 
-            .footer_right{
+            .footer_right {
                 display: flex;
                 align-items: center;
 
@@ -206,19 +247,22 @@
                     align-items: flex-end;
                     justify-content: center;
                 }
+
                 @media(max-width:768px) {
                     flex-direction: column;
                     align-items: center;
                 }
             }
         }
-        hr{
+
+        hr {
             border: none;
-            height: 2px;
+            height: 1px;
             background-color: rgb(100, 100, 100);
             width: 90%;
             margin: auto;
         }
+
         .footer-bottom {
             height: 50px;
             font-size: 14px;
@@ -226,22 +270,27 @@
             width: 100%;
             display: flex;
             justify-content: center;
+
             // text-align: left;
             .img {
                 width: 75%;
                 align-self: center;
             }
+
             .copy {
                 align-self: center;
+
                 span {
                     font-weight: 300;
                     padding: 0 5px;
-                    a{
+
+                    a {
                         font-weight: 300;
                         cursor: pointer;
-                        color:  #fbc43b;
+                        color: #fbc43b;
                         transition: color .3s;
-                        &:hover{
+
+                        &:hover {
                             color: white;
                         }
                     }
