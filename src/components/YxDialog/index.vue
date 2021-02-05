@@ -5,13 +5,14 @@ export default {
   name: "Dialog",
   methods: {
     CloseDialog() {
-      this.$store.commit("SetDialog", [false, ""])
+      this.GLOBAL.setDialog(false , '')
+      // this.$store.commit("SetDialog", [false, ""])
       this.$router.replace({ 'query': null });
     }
   },
   computed: {
     dialog() {
-      return this.$store.state.dialog
+      return this.GLOBAL.state.dialog.status
     }
   }
 }

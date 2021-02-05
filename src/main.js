@@ -7,7 +7,10 @@ import GaMethod from './common/ga_methods'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueGtm from 'vue-gtm'
-import store from './store'
+import storetest  from './common/store'
+
+Vue.prototype.GLOBAL = storetest
+
 
 Vue.config.productionTip = false
 Vue.mixin(DataValid)
@@ -24,6 +27,5 @@ Vue.use(VueGtm, {
 
 new Vue({
   router,
-  store,
   render: h => h(App)
 }).$mount('#app')

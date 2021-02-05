@@ -1,6 +1,6 @@
-<div id="Dialog" v-show="dialog.status">
+<div id="Dialog" v-show="GLOBAL.state.dialog.status">
     <transition name="fade">
-        <div class="dialog_box" v-if="dialog.status">
+        <div class="dialog_box" v-if="GLOBAL.state.dialog.status">
             <div class="dialog_header">
                 提示
             </div>

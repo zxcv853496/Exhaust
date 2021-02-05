@@ -79,7 +79,7 @@ export default {
       this.$emit("pagger-add", 1);
     },
     next_step() {
-      this.$emit("scroll-to-top")
+      this.$emit("scroll-to-top") 
       this.UpdateData()
       this.$emit("send-order")
     }

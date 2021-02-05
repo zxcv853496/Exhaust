@@ -138,7 +138,8 @@ export default {
           total_price: total_price + parseInt(installment_price),
         },
       }
-      this.$store.commit('SetLoading', true)
+      this.GLOBAL.setLoading(true)
+      // this.$store.commit('SetLoading', true)
 
       const vm = this;
       vm.$gtm.trackEvent({
@@ -169,7 +170,8 @@ export default {
           JSON.stringify(data)
         )
         .then((response) => {
-          this.$store.commit('SetLoading', false)
+          this.GLOBAL.setLoading(false)
+          // this.$store.commit('SetLoading', false)
           this.$router.replace({
             'query': {
               'status': "order_finish",
@@ -177,7 +179,8 @@ export default {
             }
           });
           this.CheckOrderRecord()
-          this.$store.commit("SetDialog", [true, "感謝您的訂購！您的訂單編號為:<br><strong>" + this.$route.query.order_no + "</strong><br>若有任何問題請恰粉絲專頁私訊"])
+          this.GLOBAL.setDialog(true, "感謝您的訂購！您的訂單編號為:<br><strong>" + this.$route.query.order_no + "</strong><br>若有任何問題請恰粉絲專頁私訊")
+          // this.$store.commit("SetDialog", [true, "感謝您的訂購！您的訂單編號為:<br><strong>" + this.$route.query.order_no + "</strong><br>若有任何問題請恰粉絲專頁私訊"])
         })
     },
     SendNewebPayOrder(data) {
@@ -187,7 +190,8 @@ export default {
           JSON.stringify(data)
         )
         .then((response) => {
-          this.$store.commit('SetLoading', true)
+          this.GLOBAL.setLoading(true)
+          // this.$store.commit('SetLoading', true)
           let newebpay_data = JSON.parse(response.data.msg)
           let method = 'post'
           let params = {
