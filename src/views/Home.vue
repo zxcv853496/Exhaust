@@ -30,7 +30,7 @@ export default {
   },
   data() {
     return {
-        test: this.GLOBAL.loading
+      test: this.GLOBAL.loading
     };
   },
   methods: {
@@ -42,27 +42,15 @@ export default {
         this.CheckOrderRecord();
 
         this.GLOBAL.setDialog(true,
-        "感謝您的訂購！您的訂單編號為:<br><strong>" +
-        this.$route.query.order_no +
-        "</strong><br>若有任何問題請恰粉絲專頁私訊",
+          "感謝您的訂購！您的訂單編號為:<br><strong>" +
+          this.$route.query.order_no +
+          "</strong><br>若有任何問題請恰粉絲專頁私訊",
         );
-        
-        // this.$store.commit("SetDialog", [
-        //   true,
-        //   "感謝您的訂購！您的訂單編號為:<br><strong>" +
-        //     this.$route.query.order_no +
-        //     "</strong><br>若有任何問題請恰粉絲專頁私訊",
-        // ]);
       } else if (this.$route.query.status == "payerror") {
 
         this.GLOBAL.setDialog(true,
-        "付款時發生錯誤，若問題持續發生請至粉絲專頁私訊。",
+          "付款時發生錯誤，若問題持續發生請至粉絲專頁私訊。",
         );
-
-        // this.$store.commit("SetDialog", [
-        //   true,
-        //   "付款時發生錯誤，若問題持續發生請至粉絲專頁私訊。",
-        // ]);
       }
     }
   },

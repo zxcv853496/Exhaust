@@ -4,22 +4,22 @@ let state = {
     loading: false,
     dialog: {
         msg: "",
-        status: true
-      }
+        status: false
+    }
 }
 Vue.observable(state)
 // let store =Vue.observable({loading:false});
 
-function setLoading(value){
+function setLoading(value) {
     state.loading = value
 }
 
-function setDialog(value , msg){
+function setDialog(value, msg) {
     state.dialog.status = value
     state.dialog.msg = msg
 }
 
-export default{
+export default {
     state,
     setLoading,
     setDialog,
