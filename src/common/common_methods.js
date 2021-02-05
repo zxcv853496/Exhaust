@@ -14,11 +14,13 @@ export default {
             return array
         },
         SendPostData(data, type, url) {
-            this.$store.commit('SetLoading', true)
+            this.GLOBAL.setLoading(true)
+            // this.$store.commit('SetLoading', true)
             return new Promise(resolve => {
                 this.axios.post(url, data)
                     .then((response) => {
-                        this.$store.commit('SetLoading', false)
+                        this.GLOBAL.setLoading(false)
+                        // this.$store.commit('SetLoading', false)
                         if (response.data.status != 'success') {
                             console.log("error")
                             console.log(response.data.msg)
