@@ -4,7 +4,7 @@ let state = {
     loading: false,
     dialog: {
         msg: "",
-        status: false
+        status: true
       }
 }
 Vue.observable(state)
