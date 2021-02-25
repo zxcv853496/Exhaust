@@ -6,7 +6,7 @@
 
         <div class="product main_product">
 
-            <h4 class="title">品項</h4>
+            <h4 class="title">品項<span>(六代勁戰、FNX需額外加收500元)</span></h4>
 
             <div class="option_container">
 
@@ -16,7 +16,7 @@
                         <p>{{item.name}}</p>
                     </div>
                     <span class="price">
-                        NT$ {{item.price}}
+                        NT$ {{item.price | priceFormat}}
                     </span>
                 </label>
 
@@ -31,7 +31,7 @@
                     <input type="radio" name="power_option" :value="item.id" v-model="power_option" />
                     <p>{{item.name}}</p>
                     <span class="price">
-                        +NT$ {{item.price}}
+                        +NT$ {{item.price | priceFormat}}
                     </span>
                 </label>
             </div>
@@ -44,7 +44,7 @@
                     <input type="radio" name="case_option" :value="item.id" v-model="case_option" />
                     <p>{{item.name}}</p>
                     <span class="price">
-                        +NT$ {{item.price}}
+                        +NT$ {{item.price | priceFormat}}
                     </span>
                 </label>
             </div>
@@ -62,7 +62,7 @@
         <div class="form_footer">
             <p class="title">總計</p>
             <div>
-                <p class="price"> NT$<strong>{{total_price}}</strong></p>
+                <p class="price"> NT$<strong>{{total_price | priceFormat}}</strong></p>
                 <button class="next_btn" @click="DataVaild">下一步</button>
             </div>
         </div>

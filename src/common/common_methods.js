@@ -34,5 +34,20 @@ export default {
                     });
             })
         },
+    },
+    filters: {
+        priceFormat: function (val) {
+            if (val != undefined) {
+                return val
+                    .toString()
+                    .replace(/^(-?\d+?)((?:\d{3})+)(?=\.\d+$|$)/, function (
+                        all,
+                        pre,
+                        groupOf3Digital
+                    ) {
+                        return pre + groupOf3Digital.replace(/\d{3}/g, ',$&')
+                    })
+            }
+        },
     }
 }

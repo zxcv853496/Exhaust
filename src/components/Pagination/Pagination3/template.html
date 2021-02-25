@@ -11,14 +11,14 @@
                     <input type="radio" name="pay_option" value="全額付款" v-model="pay_option" />
                     <p>全額付款</p>
                     <span class="price">
-                        NT$ {{total_price}}
+                        NT$ {{total_price | priceFormat}}
                     </span>
                 </label>
                 <label class="card">
                     <input type="radio" name="pay_option" value="訂金付款" v-model="pay_option" />
                     <p>訂金付款<span>(剩餘金額貨到付款)</span></p>
                     <span class="price">
-                        NT$ {{Math.ceil(total_price/2)}}
+                        NT$ {{Math.ceil(total_price/2) | priceFormat}}
                     </span>
                 </label>
             </div>
@@ -34,7 +34,7 @@
                         <p>{{item.name}}</p>
                         <span class="price" v-if="pay_way == 3 && item.id == 3">
                             +NT$
-                            {{Math.ceil(total_price * item.installment.filter(option=>option.id == installment)[0].percent)}}
+                            {{Math.ceil(total_price * item.installment.filter(option=>option.id == installment)[0].percent) | priceFormat}}
                         </span>
                     </label>
                     <template v-if="pay_way == 3 && item.id == 3">
@@ -55,8 +55,9 @@
                 <h4 class="title">訂單商品資料</h4>
                 <p><strong>品名:</strong> {{buy_product_name}} </p>
                 <p><strong>防燙蓋:</strong> {{buy_product_case_option}} <span>(+NT$
-                        {{buy_product_case_option_price}})</span></p>
-                <p><strong>內部設定:</strong> {{buy_product_power_option}} (+NT$ {{buy_product_power_option_price}})</p>
+                        {{buy_product_case_option_price | priceFormat}})</span></p>
+                <p><strong>內部設定:</strong> {{buy_product_power_option}} (+NT$
+                    {{buy_product_power_option_price | priceFormat}})</p>
                 <p><strong>使用車種:</strong> {{buy_data.product.model}}</p>
             </div>
 
@@ -73,13 +74,14 @@
                 <p>
                     <strong>訂單總金額:</strong>
                     <template v-if="pay_way == 3">NT$ {{ total_price_with_installment }}</template>
-                    <template v-else>NT$ {{ total_price }}</template>
+                    <template v-else>NT$ {{ total_price | priceFormat}}</template>
                 </p>
                 <p>
                     <strong>本次付款金額:</strong>
-                    <template v-if="pay_way == 3">NT$ {{ total_price_with_installment }}</template>
-                    <template v-else-if="pay_option == '訂金付款'">NT$ {{ Math.ceil(total_price / 2 ) }}</template>
-                    <template v-else>NT$ {{ total_price }}</template>
+                    <template v-if="pay_way == 3">NT$ {{ total_price_with_installment | priceFormat}}</template>
+                    <template v-else-if="pay_option == '訂金付款'">NT$
+                        {{ Math.ceil(total_price / 2 ) | priceFormat}}</template>
+                    <template v-else>NT$ {{ total_price | priceFormat}}</template>
                     <span v-if="pay_option == '訂金付款'">(本次僅支付訂金，其餘款項貨到付款)</span>
                 </p>
             </div>

@@ -19,12 +19,12 @@ export default {
           {
             id: 1,
             name: "雷神黑鐵排氣管",
-            price: 3000,
+            price: 1999,
           },
           {
             id: 2,
             name: "雷神白鐵排氣管",
-            price: 4000,
+            price: 3500,
           },
         ],
         power_option: [
