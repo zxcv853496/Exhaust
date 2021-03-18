@@ -18,6 +18,7 @@ export default {
       pay_way: 1,
       pay_option: "全額付款",
       installment: 3,
+      ship_option: "宅配",
       total: 0,
       cash_on: [
         {
@@ -79,7 +80,7 @@ export default {
       this.$emit("pagger-add", 1);
     },
     next_step() {
-      this.$emit("scroll-to-top") 
+      this.$emit("scroll-to-top")
       this.UpdateData()
       this.$emit("send-order")
     }

@@ -112,6 +112,9 @@ export default {
       if (this.buy_data.pay.pay_option == '訂金付款') {
         total_price = Math.ceil(this.total_price / 2)
       }
+      else {
+        total_price += 160;//運費
+      }
 
 
       let data = {
