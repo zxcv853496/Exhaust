@@ -19,12 +19,12 @@ export default {
           {
             id: 1,
             name: "雷神黑鐵排氣管",
-            price: 1999,
+            price: 2199,
           },
           {
             id: 2,
             name: "雷神白鐵排氣管",
-            price: 3500,
+            price: 3699,
           },
         ],
         power_option: [
@@ -113,7 +113,7 @@ export default {
         total_price = Math.ceil(this.total_price / 2)
       }
       else {
-        total_price += 160;//運費
+        total_price += 200;//運費
       }
 
 

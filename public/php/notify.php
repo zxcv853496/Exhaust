@@ -78,7 +78,7 @@ $Body_us = str_replace("UserAddress", $userInfo['address'], $Body_us);
 $Body_us = str_replace("UserEmail", $userInfo['email'], $Body_us);
 $Body_us = str_replace("UserPhone", $userInfo['phone'], $Body_us);
 $Body_us = str_replace("UserCommit", $userInfo['commit'], $Body_us);
-$Body_us = str_replace("MainMessage", "款項", $Body_us);
+$Body_us = str_replace("MainMessage", $userInfo['pay_option'] . "款項", $Body_us);
 //https://i.imgur.com/Zc37oTb.gif
 
 $mail_us = new PHPMailer\PHPMailer\PHPMailer();
