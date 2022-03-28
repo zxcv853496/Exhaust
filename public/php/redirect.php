@@ -80,7 +80,7 @@ if ($result['PaymentType'] == 'VACC' || $result['PaymentType'] == 'CVS' || $resu
     $mail->Port = 465; //Gamil的SMTP主機的埠號(Gmail為465)。
     $mail->CharSet = 'utf-8'; //郵件編碼
     $mail->Username = 'thor.exhaust.website@gmail.com'; //Gamil帳號
-    $mail->Password = 'aB:yx+>2RWJbCrw8ohcn'; //Gmail密碼
+    $mail->Password = 'ifmgtybbyzgucfae'; //Gmail密碼
     $mail->From = 'thor.exhaust.website@gmail.com'; //寄件者信箱
     $mail->FromName = '雷神排氣管-支援中心'; //寄件者姓名
     $mail->Subject = '【雷神排氣管】感謝您的訂購，我們將盡快聯絡您：'; //郵件標題
@@ -123,7 +123,7 @@ if ($result['PaymentType'] == 'VACC' || $result['PaymentType'] == 'CVS' || $resu
     $mail_us->Port = 465; //Gamil的SMTP主機的埠號(Gmail為465)。
     $mail_us->CharSet = 'utf-8'; //郵件編碼
     $mail_us->Username = 'thor.exhaust.website@gmail.com'; //Gamil帳號
-    $mail_us->Password = 'aB:yx+>2RWJbCrw8ohcn'; //Gmail密碼
+    $mail_us->Password = 'ifmgtybbyzgucfae'; //Gmail密碼
     $mail_us->From = 'thor.exhaust.website@gmail.com'; //寄件者信箱
     $mail_us->FromName = '雷神排氣管-銷售中心'; //寄件者姓名
     $mail_us->Subject = '【雷神排氣管】新訂單，您有一筆來自客戶' . $userInfo['name'] . '的訂單：'; //郵件標題
