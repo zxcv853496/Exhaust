@@ -1,5 +1,5 @@
        <IfModule mod_headers.c>
-    RequestHeader set X-Prerender-Token "PINMMxQzZx36P7sClOjx"
+    RequestHeader set X-Prerender-Token "i8JCEEYaqvGYKv8Cl5mY"
     RequestHeader set X-Prerender-Version "prerender-apache@2.0.0"
 </IfModule>
 
