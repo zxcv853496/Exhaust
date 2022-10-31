@@ -1,314 +1,329 @@
 .pagination {
-    width: 800px;
-    max-width: 100%;
-    margin: auto;
-    background-color: rgba(255, 255, 255, 0.646);
-    padding: 10px;
-    position: relative;
-    z-index: 5;
+  width: 800px;
+  max-width: 100%;
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.646);
+  padding: 10px;
+  position: relative;
+  z-index: 5;
 }
 
-
 .container {
+  .form_title {
+    margin-bottom: 20px;
+  }
 
-    .form_title {
-        margin-bottom: 20px;
+  .product {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    margin-bottom: 30px;
+    padding: 10px;
+    background-color: rgb(254, 254, 254);
+
+    .title {
+      font-weight: 600;
+      text-align: left;
+      margin-bottom: 10px;
+
+      span {
+        font-size: 10px;
+        margin-left: 10px;
+      }
     }
+  }
 
-    .product {
-        display: flex;
-        flex-direction: column;
+  .product_option {
+    text-align: left;
+    .option_container {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+
+      .card {
+        padding: 10px 20px;
+        margin: 0 10px;
+        border: 1px solid rgb(210, 210, 210);
         background-color: #fff;
         border-radius: 5px;
-        border: 1px solid #eee;
-        margin-bottom: 30px;
-        padding: 10px;
-        background-color: rgb(254, 254, 254);
+        text-align: right;
 
-        .title {
-            font-weight: 600;
-            text-align: left;
-            margin-bottom: 10px;
+        .card_title {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
 
-            span {
-                font-size: 10px;
-                margin-left: 10px;
-            }
+          input[type='radio'] {
+            margin-right: 20px;
+          }
         }
+
+        .price {
+          font-size: 14px;
+          color: #555;
+        }
+
+        @media (max-width: 600px) {
+          .card_title {
+            font-size: 14px;
+
+            input[type='radio'] {
+              margin-right: 10px;
+            }
+          }
+        }
+      }
     }
 
-    .product.main_product {
-        .option_container {
-            width: 100%;
-            display: flex;
-            justify-content: flex-start;
-
-            .card {
-                padding: 10px 20px;
-                margin: 0 10px;
-                border: 1px solid rgb(210, 210, 210);
-                background-color: #fff;
-                border-radius: 5px;
-                text-align: right;
-
-                .card_title {
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-
-                    input[type='radio'] {
-                        margin-right: 20px;
-                    }
-                }
-
-                .price {
-                    font-size: 14px;
-                    color: #555;
-                }
-
-                @media(max-width:600px) {
-                    .card_title {
-                        font-size: 14px;
-
-                        input[type='radio'] {
-                            margin-right: 10px;
-                        }
-                    }
-                }
-            }
-        }
+    .select_box {
+      width: 100%;
+      margin-bottom: 10px;
     }
 
-    .product.setting {
-        .option_container {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-
-            label.card {
-                display: flex;
-                align-items: center;
-                margin: 0px 10px 5px;
-
-                input[type='radio'] {
-                    margin-right: 10px;
-                }
-
-                p {
-                    font-size: 14px;
-
-                    span {
-                        font-size: 12px;
-                        color: #333;
-                    }
-                }
-
-                .price {
-                    font-size: 14px;
-                    color: #555;
-                    margin-left: 10px;
-                }
-
-                &.disable {
-                    display: none;
-                }
-            }
-
-            input[type='text'] {
-                border: none;
-                padding: 10px 14px;
-                width: 100%;
-                font-size: 16px;
-
-                &:focus {
-                    outline: none;
-                }
-            }
-
-            select {
-                width: 100px;
-                margin-left: 30px;
-                margin-bottom: 10px;
-
-                &.disable {
-                    display: none;
-                }
-            }
-
-        }
+    label {
+      font-size: 12px;
     }
+    .form_select {
+      padding: 5px 10px;
+      width: 100%;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
 
-    .product.user_form_group {
-        .title {
-            font-weight: 600;
+  .product.setting {
+    .option_container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      label.card {
+        display: flex;
+        align-items: center;
+        margin: 0px 10px 5px;
+
+        input[type='radio'] {
+          margin-right: 10px;
+        }
+
+        p {
+          font-size: 14px;
+
+          span {
             font-size: 12px;
-            text-align: left;
-            margin-bottom: 0px;
+            color: #333;
+          }
         }
 
-        .option_container {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-
-            label.card {
-                display: flex;
-                align-items: center;
-                margin: 0px 10px 5px;
-
-                p {
-                    font-size: 14px;
-                }
-            }
-
-            input[type='text'] {
-                border: none;
-                border-radius: 5px;
-                font-size: 16px;
-                padding: 5px 10px;
-                margin-top: 10px;
-                width: 100%;
-                background-color: rgb(242, 242, 242);
-
-                &:focus {
-                    outline: none;
-                }
-            }
-
-            textarea {
-                border: none;
-                width: 100%;
-                min-height: 100px;
-                padding: 5px 10px;
-                margin-top: 10px;
-                font-size: 16px;
-                border-radius: 5px;
-                background-color: rgb(242, 242, 242);
-
-                &:focus {
-                    outline: none;
-                }
-            }
-
+        .price {
+          font-size: 14px;
+          color: #555;
+          margin-left: 10px;
         }
+
+        &.disable {
+          display: none;
+        }
+      }
+
+      input[type='text'] {
+        border: none;
+        padding: 10px 14px;
+        width: 100%;
+        font-size: 16px;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      select {
+        width: 100px;
+        margin-left: 30px;
+        margin-bottom: 10px;
+
+        &.disable {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .product.user_form_group {
+    select {
+      margin-top: 10px;
+    }
+    .title {
+      font-weight: 600;
+      font-size: 12px;
+      text-align: left;
+      margin-bottom: 0px;
     }
 
-    .product.user_form_group.setting {
-        .title {
-            margin-bottom: 10px;
-        }
+    .option_container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
 
-        label.card {
-            margin-left: 0px;
-
-            input[type="radio"] {
-                margin-right: 5px;
-            }
-        }
-    }
-
-    .order_detail {
+      label.card {
         display: flex;
-        flex-direction: column;
-        background-color: #fff;
+        align-items: center;
+        margin: 0px 10px 5px;
+
+        p {
+          font-size: 14px;
+        }
+      }
+
+      input[type='text'] {
+        border: none;
         border-radius: 5px;
-        border: 1px solid #eee;
-        margin-bottom: 30px;
-        padding: 10px;
-        background-color: rgb(254, 254, 254);
+        font-size: 16px;
+        padding: 5px 10px;
+        margin-top: 10px;
+        width: 100%;
+        background-color: rgb(242, 242, 242);
 
-        .title {
-            font-weight: 600;
-            text-align: left;
-            margin-bottom: 10px;
+        &:focus {
+          outline: none;
         }
+      }
 
-        .detail_info {
-            text-align: left;
-            margin-bottom: 20px;
+      textarea {
+        border: none;
+        width: 100%;
+        min-height: 100px;
+        padding: 5px 10px;
+        margin-top: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        background-color: rgb(242, 242, 242);
 
-            .title {
-                padding-bottom: 10px;
-                border-bottom: 1px solid #eee;
-
-                span {
-                    font-size: 14px;
-                }
-            }
-
-            p {
-                width: 100%;
-                display: block;
-                font-size: 14px;
-                margin-bottom: 10px;
-                color: #666;
-
-                strong {
-                    display: block;
-                    font-size: 16px;
-                    color: #000;
-                }
-            }
+        &:focus {
+          outline: none;
         }
+      }
+    }
+  }
 
-        .detail_info.price_box {
-            margin-bottom: 0px;
-        }
+  .product.user_form_group.setting {
+    .title {
+      margin-bottom: 10px;
     }
 
-    .error {
-        color: red;
+    label.card {
+      margin-left: 0px;
+
+      input[type='radio'] {
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .order_detail {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    margin-bottom: 30px;
+    padding: 10px;
+    background-color: rgb(254, 254, 254);
+
+    .title {
+      font-weight: 600;
+      text-align: left;
+      margin-bottom: 10px;
+    }
+
+    .detail_info {
+      text-align: left;
+      margin-bottom: 20px;
+
+      .title {
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+
+        span {
+          font-size: 14px;
+        }
+      }
+
+      p {
+        width: 100%;
+        display: block;
         font-size: 14px;
-        padding-left: 10px;
+        margin-bottom: 10px;
+        color: #666;
+
+        strong {
+          display: block;
+          font-size: 16px;
+          color: #000;
+        }
+      }
     }
 
+    .detail_info.price_box {
+      margin-bottom: 0px;
+    }
+  }
+
+  .error {
+    color: red;
+    font-size: 12px;
+    // padding-left: 10px;
+  }
 }
 
 .form_footer {
-    width: 100%;
-    padding: 0px 10px;
+  width: 100%;
+  padding: 0px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  div {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+  }
 
-    div {
-        display: flex;
-        align-items: center;
+  .price {
+    margin-right: 30px;
+
+    strong {
+      font-size: 18px;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+  }
+
+  .next_btn {
+    padding: 10px 50px;
+    background-color: rgb(255, 196, 0);
+    border: 2px solid transparent;
+    color: #000;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
     }
 
-    .price {
-        margin-right: 30px;
-
-        strong {
-            font-size: 18px;
-            font-weight: bold;
-            margin-left: 5px;
-        }
+    &:nth-of-type(1) {
+      background-color: transparent;
+      border: 2px solid rgb(255, 196, 0);
+      color: rgb(255, 196, 0);
     }
 
-    .next_btn {
-        padding: 10px 50px;
-        background-color: rgb(255, 196, 0);
-        border: 2px solid transparent;
-        color: #000;
-        font-weight: bold;
-        border-radius: 30px;
-        cursor: pointer;
-
-        &:focus {
-            outline: none;
-        }
-
-        &:nth-of-type(1) {
-            background-color: transparent;
-            border: 2px solid rgb(255, 196, 0);
-            color: rgb(255, 196, 0);
-        }
-
-        &:nth-of-type(2) {
-            margin-left: 20px;
-        }
+    &:nth-of-type(2) {
+      margin-left: 20px;
     }
+  }
 }

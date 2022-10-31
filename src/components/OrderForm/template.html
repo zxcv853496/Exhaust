@@ -1,17 +1,47 @@
 <div id="OrderForm" class="section4">
-    <div class="main container">
-        <h3 class="main title">
-            立即訂購
-            <span>BUY PRODUCT</span>
-        </h3>
-        <div class="container">
-            <Pagination1 ref="ProductForm" v-on:pagger-add="paggeradd" v-on:update-buy-data="UpdateBuyData"
-                v-on:scroll-to-top="ScrollToFormTop" :product_data="product_data" v-show="pager == 0" />
-            <Pagination2 ref="UserForm" v-on:pagger-add="paggeradd" v-on:update-buy-data="UpdateBuyData"
-                v-on:scroll-to-top="ScrollToFormTop" :total_price="total_price" v-show="pager == 1" />
-            <Pagination3 ref="PayForm" v-on:pagger-add="paggeradd" v-on:update-buy-data="UpdateBuyData"
-                v-on:scroll-to-top="ScrollToFormTop" v-on:send-order="SendOrder" :buy_data="buy_data"
-                :product_data="product_data" :total_price="total_price" v-show="pager == 2" />
-        </div>
+  <div class="main container">
+    <h3 class="main title">
+      立即訂購
+      <span>BUY PRODUCT</span>
+    </h3>
+    <div class="container">
+      <Pagination1
+        ref="ProductForm"
+        v-on:pagger-add="paggeradd"
+        v-on:update-buy-data="UpdateBuyData"
+        v-on:scroll-to-top="ScrollToFormTop"
+        :product_data="product_data"
+        :power_data="power_data"
+        :case_data="case_data"
+        :scooter_data="scooter_data"
+        :order_data="buy_data.product"
+        :total_price="total_price"
+        v-show="pager == 0"
+      />
+      <Pagination2
+        ref="UserForm"
+        v-on:pagger-add="paggeradd"
+        v-on:update-buy-data="UpdateBuyData"
+        v-on:scroll-to-top="ScrollToFormTop"
+        :order_data="buy_data.user"
+        :total_price="total_price"
+        v-show="pager == 1"
+      />
+      <Pagination3
+        ref="PayForm"
+        v-on:pagger-add="paggeradd"
+        v-on:update-buy-data="UpdateBuyData"
+        v-on:scroll-to-top="ScrollToFormTop"
+        v-on:send-order="SendOrder"
+        :buy_data="buy_data"
+        :scooter_data="scooter_data"
+        :product_data="product_data"
+        :power_data="power_data"
+        :case_data="case_data"
+        :total_price="total_price"
+        :order_total_price="order_total_price"
+        v-show="pager == 2"
+      />
     </div>
+  </div>
 </div>

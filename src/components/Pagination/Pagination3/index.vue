@@ -1,30 +1,37 @@
-<template src = './template.html'></template>
+<template src="./template.html"></template>
 
 <script>
 export default {
   props: {
+    scooter_data: {
+      require: true,
+    },
     product_data: {
+      require: true,
+    },
+    power_data: {
+      require: true,
+    },
+    case_data: {
       require: true,
     },
     buy_data: {
       require: true,
     },
     total_price: {
-      require: true
-    }
+      require: true,
+    },
+    order_total_price: {
+      require: true,
+    },
   },
   data() {
     return {
-      pay_way: 1,
-      pay_option: "全額付款",
-      installment: 3,
-      ship_option: "宅配",
-      total: 0,
       cash_on: [
-        {
-          id: 1,
-          name: '貨到付款',
-        },
+        // {
+        //   id: 1,
+        //   name: '貨到付款',
+        // },
         {
           id: 2,
           name: '信用卡一次付清',
@@ -42,85 +49,95 @@ export default {
         },
         {
           id: 4,
-          name: 'WebATM'
+          name: 'WebATM',
         },
         {
           id: 5,
-          name: 'ATM'
+          name: 'ATM',
         },
         {
           id: 6,
-          name: '超商代碼繳費'
+          name: '超商代碼繳費',
         },
         {
           id: 7,
-          name: '超商條碼繳費'
+          name: '超商條碼繳費',
         },
       ],
     };
   },
   methods: {
-    SetData(data) {
-      this.pay_way = this.cash_on.filter(item => item.name == data.pay_way)[0].id
-      this.pay_option = data.pay_option
-      this.installment = data.installment
-    },
-    UpdateData() {
-      let pay_data = {
-        pay_way: this.cash_on.filter(item => item.id == this.pay_way)[0].name,
-        pay_option: this.pay_option,
-        installment: this.installment,
-        percent: this.cash_on.filter(item => item.id == 3)[0].installment.filter(item => item.id == this.installment)[0].percent
-      }
-      this.$emit("update-buy-data", ["pay", pay_data])
+    UpdateData(key, val) {
+      let tmp_data = Object.assign({}, this.buy_data.pay);
+      tmp_data[key] = val;
+      key == 'pay_way' ? (tmp_data.installment = 3) : '';
+      key == 'installment'
+        ? (tmp_data.percent = this.cash_on[1].installment.filter(
+            (item) => item.id == val
+          )[0].percent)
+        : '';
+      key == 'pay_option' && val == '訂金付款'
+        ? ((tmp_data.pay_way = '信用卡一次付清'), (tmp_data.installment = 3))
+        : '';
+      this.$emit('update-buy-data', ['pay', tmp_data]);
     },
     perv_step() {
-      this.$emit("scroll-to-top")
-      this.UpdateData()
-      this.$emit("pagger-add", 1);
+      this.$emit('scroll-to-top');
+      this.$emit('pagger-add', 1);
     },
     next_step() {
-      this.$emit("scroll-to-top")
-      this.UpdateData()
-      this.$emit("send-order")
-    }
-  },
-  watch: {
-    pay_option() {
-      if (this.pay_option == '訂金付款') {
-        this.pay_way = 2
-      }
-      else {
-        this.pay_way = 1
-      }
-    }
+      this.$emit('scroll-to-top');
+      this.$emit('send-order');
+    },
   },
   computed: {
-    buy_product_name() {
-      return this.product_data.products.filter(item => item.id == this.buy_data.product.category)[0].name
+    pay_way_list() {
+      let tmp_list = JSON.parse(JSON.stringify(this.cash_on));
+      if (this.buy_data.pay.pay_option == '訂金付款') {
+        tmp_list.splice(1, 1);
+      }
+      return tmp_list;
+    },
+    buy_scooter_price() {
+      return this.buy_data.product.scooter == ''
+        ? 0
+        : this.scooter_data[this.buy_data.product.scooter_brand].filter(
+            (item) => item.title == this.buy_data.product.scooter
+          )[0].price;
     },
     buy_product_name_price() {
-      return this.product_data.products.filter(item => item.id == this.buy_data.product.category)[0].price
-    },
-    buy_product_case_option() {
-      return this.product_data.case_option.filter(item => item.id == this.buy_data.product.case_option)[0].name
+      return this.buy_data.product.title == ''
+        ? 0
+        : this.product_data.filter(
+            (item) => item.name == this.buy_data.product.title
+          )[0].price;
     },
     buy_product_case_option_price() {
-      return this.product_data.case_option.filter(item => item.id == this.buy_data.product.case_option)[0].price
-    },
-    buy_product_power_option() {
-      return this.product_data.power_option.filter(item => item.id == this.buy_data.product.power_option)[0].name
+      if (this.buy_data.product.case_option != '') {
+        return this.case_data.filter(
+          (item) => item.name == this.buy_data.product.case_option
+        )[0].price;
+      } else {
+        return 0;
+      }
     },
     buy_product_power_option_price() {
-      return this.product_data.power_option.filter(item => item.id == this.buy_data.product.power_option)[0].price
+      if (this.buy_data.product.power_option != '') {
+        return this.power_data.filter(
+          (item) => item.name == this.buy_data.product.power_option
+        )[0].price;
+      } else {
+        return 0;
+      }
     },
     total_price_with_installment() {
-      let percent = this.cash_on.filter(item => item.id == 3)[0].installment.filter(item => item.id == this.installment)[0].percent
-      return this.total_price + Math.ceil(this.total_price * percent)
-    }
-  }
+      let percent = this.cash_on
+        .filter((item) => item.id == 3)[0]
+        .installment.filter((item) => item.id == this.installment)[0].percent;
+      return this.total_price + Math.ceil(this.total_price * percent);
+    },
+  },
 };
 </script>
 
-<style>
-</style>
+<style></style>

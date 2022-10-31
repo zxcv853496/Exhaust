@@ -1,70 +1,118 @@
 <div class="pagination">
-    <div class="container">
-        <h3 class="form_title">
-            商品資訊
-        </h3>
+  <div class="container">
+    <h3 class="form_title">
+      商品資訊
+    </h3>
 
-        <div class="product main_product">
+    <div class="product product_option">
+      <h4 class="title">車種</h4>
 
-            <h4 class="title">品項<span>(六代勁戰、FNX需額外加收500元)</span></h4>
+      <div class="select_box">
+        <label>品牌</label>
+        <select
+          class="form_select"
+          @input="UpdateData('scooter_brand',$event.target.value)"
+          :value="order_data.scooter_brand"
+        >
+          <option value="">請選擇車種品牌</option>
+          <option v-for="item in Object.keys(scooter_data)" :key="item"
+            >{{item}}</option
+          >
+        </select>
 
-            <div class="option_container">
-
-                <label class="card" v-for="item in product_data.products" :class="{active:product == item.id}">
-                    <div class="card_title">
-                        <input type="radio" name="product" :value="item.id" v-model="product" />
-                        <p>{{item.name}}</p>
-                    </div>
-                    <span class="price">
-                        NT$ {{item.price | priceFormat}}
-                    </span>
-                </label>
-
-            </div>
-        </div>
-
-        <div class="product setting">
-            <h4 class="title">內部設定</h4>
-
-            <div class="option_container">
-                <label class="card" v-for="item in product_data.power_option" :class="{active:power_option == item.id}">
-                    <input type="radio" name="power_option" :value="item.id" v-model="power_option" />
-                    <p>{{item.name}}</p>
-                    <span class="price">
-                        +NT$ {{item.price | priceFormat}}
-                    </span>
-                </label>
-            </div>
-        </div>
-
-        <div class="product setting">
-            <h4 class="title">防燙蓋</h4>
-            <div class="option_container">
-                <label class="card" v-for="item in product_data.case_option" :class="{active:case_option == item.id}">
-                    <input type="radio" name="case_option" :value="item.id" v-model="case_option" />
-                    <p>{{item.name}}</p>
-                    <span class="price">
-                        +NT$ {{item.price | priceFormat}}
-                    </span>
-                </label>
-            </div>
-        </div>
-
-        <div class="product setting">
-            <h4 class="title">使用車種</h4>
-            <div class="option_container">
-                <input v-model="model" type="text" placeholder="請輸入您的車種">
-                <p class="error" v-if="errors.filter(item=>item.name == 'model').length > 0">
-                    {{errors.filter(item=>item.name == 'model')[0].msg}}</p>
-            </div>
-        </div>
-
-        <div class="form_footer">
-            <p class="title">總計</p>
-            <div>
-                <p class="price"> NT$<strong>{{total_price | priceFormat}}</strong></p>
-                <button class="next_btn" @click="DataVaild">下一步</button>
-            </div>
-        </div>
+        <p v-if="GetError('scooter_brand')" class="error">請選擇車種品牌</p>
+      </div>
+      <div class="select_box">
+        <label>型號</label>
+        <select
+          class="form_select"
+          @input="UpdateData('scooter',$event.target.value)"
+          :value="order_data.scooter"
+        >
+          <option value="">請選擇車種</option>
+          <template v-if="order_data.scooter_brand!=''">
+            <template v-for="item in scooter_data[order_data.scooter_brand]">
+              <option
+                v-if="item.price!=0"
+                :key="item.title"
+                :value="item.title"
+              >
+                {{item.title}} (+NT${{item.price}})
+              </option>
+              <option v-else :key="item.title" :value="item.title">
+                {{item.title}}
+              </option>
+            </template>
+          </template>
+        </select>
+        <p v-if="GetError('scooter')" class="error">請選擇車種型號</p>
+      </div>
     </div>
+
+    <div class="product product_option">
+      <h4 class="title">排氣管型號</h4>
+
+      <div class="select_box">
+        <select
+          class="form_select"
+          @input="UpdateData('title',$event.target.value)"
+          :value="order_data.title"
+        >
+          <option value="">請選擇商品</option>
+          <option
+            v-for="item in product_data"
+            :key="item.name"
+            :value="item.name"
+            >{{item.name }} (+NT${{item.price}})</option
+          >
+        </select>
+
+        <p v-if="GetError('title')" class="error">請選擇商品型號</p>
+      </div>
+    </div>
+
+    <div class="product product_option">
+      <h4 class="title">內部設定</h4>
+
+      <div class="select_box">
+        <select
+          class="form_select"
+          @input="UpdateData('power_option',$event.target.value)"
+          :value="order_data.power_option"
+        >
+          <option value="">請選擇內部設定</option>
+          <option v-for="item in power_data" :key="item.name" :value="item.name"
+            >{{item.name }} (+NT${{item.price}})</option
+          >
+        </select>
+        <p v-if="GetError('power_option')" class="error">請選擇內部設定</p>
+      </div>
+    </div>
+
+    <div class="product product_option">
+      <h4 class="title">防燙蓋設定</h4>
+
+      <div class="select_box">
+        <select
+          class="form_select"
+          @input="UpdateData('case_option',$event.target.value)"
+          :value="order_data.case_option"
+        >
+          <option value="">請選擇防燙蓋設定</option>
+          <option v-for="item in case_data" :key="item.name" :value="item.name"
+            >{{item.name }} (+NT${{item.price}})</option
+          >
+        </select>
+        <p v-if="GetError('case_option')" class="error">請選擇防燙蓋設定</p>
+      </div>
+    </div>
+
+    <div class="form_footer">
+      <p class="title">總計</p>
+      <div>
+        <p class="price">NT$<strong>{{total_price | priceFormat}}</strong></p>
+        <button class="next_btn" @click="DataVaild">下一步</button>
+      </div>
+    </div>
+  </div>
 </div>

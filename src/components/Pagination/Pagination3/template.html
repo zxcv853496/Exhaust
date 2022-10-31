@@ -1,109 +1,149 @@
 <div class="pagination">
-    <div class="container">
-        <h3 class="form_title">
-            付款資訊
-        </h3>
+  <div class="container">
+    <h3 class="form_title">
+      付款資訊
+    </h3>
 
-        <div class="product setting">
-            <h4 class="title">付款選項</h4>
-            <div class="option_container">
-                <label class="card">
-                    <input type="radio" name="pay_option" value="全額付款" v-model="pay_option" />
-                    <p>全額付款</p>
-                    <span class="price">
-                        NT$ {{total_price | priceFormat}}
-                    </span>
-                </label>
-                <label class="card">
-                    <input type="radio" name="pay_option" value="訂金付款" v-model="pay_option" />
-                    <p>訂金付款<span>(剩餘金額貨到付款)</span></p>
-                    <span class="price">
-                        NT$ {{Math.ceil(total_price/2) | priceFormat}}
-                    </span>
-                </label>
-            </div>
+    <div class="product product_option">
+      <h4 class="title">付款選項</h4>
+      <div class="option_container">
+        <div class="select_box">
+          <select
+            class="form_select"
+            @input="UpdateData('pay_option',$event.target.value)"
+            :value="buy_data.pay.pay_option"
+          >
+            <!-- <option value="">請選擇付款選項</option> -->
+            <option value="全額付款"
+              >全額付款 (NT$ {{total_price | priceFormat}})</option
+            >
+            <option value="訂金付款">訂金付款 (NT$ 1,000)</option>
+          </select>
+
+          <!-- <p v-if="GetError('scooter_brand')" class="error">請選擇車種品牌</p> -->
         </div>
-
-        <div class="product setting">
-            <h4 class="title">寄送方式</h4>
-            <div class="option_container">
-                <label class="card">
-                    <input type="radio" name="ship_option" value="宅配" v-model="ship_option" />
-                    <p>宅配</p>
-                    <span class="price">
-                        NT$ {{200 | priceFormat}}
-                    </span>
-                </label>
-            </div>
-        </div>
-
-        <div class="product setting">
-            <h4 class="title">付款方式</h4>
-            <div class="option_container">
-                <template v-for="item in cash_on">
-                    <label class="card"
-                        :class="{disable:item.id==3 && pay_option == '訂金付款' || item.id==1 && pay_option == '訂金付款'}">
-                        <input type="radio" name="pay_way" :value="item.id" v-model="pay_way" />
-                        <p>{{item.name}}</p>
-                        <span class="price" v-if="pay_way == 3 && item.id == 3">
-                            +NT$
-                            {{Math.ceil(total_price * item.installment.filter(option=>option.id == installment)[0].percent) | priceFormat}}
-                        </span>
-                    </label>
-                    <template v-if="pay_way == 3 && item.id == 3">
-                        <select v-model="installment" :class="{disable:item.id==3 && pay_option == '訂金付款'}">
-                            <option v-for="option in item.installment" :value="option.id">{{option.name}}</option>
-                        </select>
-                    </template>
-                </template>
-            </div>
-        </div>
-
-        <h3 class="form_title">
-            訂單詳細資料
-        </h3>
-
-        <div class="order_detail">
-            <div class="detail_info">
-                <h4 class="title">訂單商品資料</h4>
-                <p><strong>品名:</strong> {{buy_product_name}} </p>
-                <p><strong>防燙蓋:</strong> {{buy_product_case_option}} <span>(+NT$
-                        {{buy_product_case_option_price | priceFormat}})</span></p>
-                <p><strong>內部設定:</strong> {{buy_product_power_option}} (+NT$
-                    {{buy_product_power_option_price | priceFormat}})</p>
-                <p><strong>使用車種:</strong> {{buy_data.product.model}}</p>
-            </div>
-
-            <div class="detail_info">
-                <h4 class="title">訂購人資料</h4>
-                <p><strong>購買人:</strong> {{buy_data.user.name}} </p>
-                <p><strong>地址:</strong> {{buy_data.user.address}}</p>
-                <p><strong>電話:</strong> {{buy_data.user.phone}}</p>
-                <p><strong>信箱:</strong> {{buy_data.user.email}}</p>
-            </div>
-
-            <div class="price_box detail_info">
-                <h4 class="title">付款資料<span v-if="pay_way==1">(貨到付款)</span></h4>
-                <p>
-                    <strong>訂單總金額:</strong>
-                    <template v-if="pay_way == 3">NT$ {{ total_price_with_installment + 160 }}</template>
-                    <template v-else>NT$ {{ total_price + 160 | priceFormat}}</template>
-                </p>
-                <p>
-                    <strong>本次付款金額:</strong>
-                    <template v-if="pay_way == 3">NT$ {{ total_price_with_installment + 160 | priceFormat}}</template>
-                    <template v-else-if="pay_option == '訂金付款'">NT$
-                        {{ Math.ceil(total_price / 2 ) | priceFormat}}</template>
-                    <template v-else>NT$ {{ total_price + 160 | priceFormat}}</template>
-                    <span v-if="pay_option == '訂金付款'">(本次僅支付訂金，其餘款項貨到付款)</span>
-                </p>
-            </div>
-        </div>
-
+      </div>
     </div>
 
-    <div class="form_footer">
-        <button class="next_btn" @click="perv_step">上一步</button>
-        <button class="next_btn checkout_btn" @click="next_step">送出訂單</button>
+    <div class="product product_option">
+      <h4 class="title">寄送方式</h4>
+      <div class="option_container">
+        <div class="select_box">
+          <select
+            class="form_select"
+            @input="UpdateData('ship_option',$event.target.value)"
+            :value="buy_data.pay.ship_option"
+          >
+            <!-- <option value="">請選擇運送方式</option> -->
+            <option value="宅配到府">宅配到府 (+NT$ 200)</option>
+          </select>
+
+          <!-- <p v-if="GetError('scooter_brand')" class="error">請選擇車種品牌</p> -->
+        </div>
+      </div>
     </div>
+
+    <div class="product product_option">
+      <h4 class="title">付款方式</h4>
+      <div class="select_box">
+        <select
+          class="form_select"
+          @input="UpdateData('pay_way',$event.target.value)"
+          :value="buy_data.pay.pay_way"
+        >
+          <!-- <option value="">請選擇付款方式</option> -->
+          <option
+            v-for="item in pay_way_list"
+            :key="item.name"
+            :value="item.name"
+          >
+            {{item.name}}
+          </option>
+        </select>
+
+        <!-- <p v-if="GetError('scooter_brand')" class="error">請選擇車種品牌</p> -->
+      </div>
+
+      <div class="select_box" v-if="buy_data.pay.pay_way=='信用卡分期付款'">
+        <label>分期期數</label>
+        <select
+          class="form_select"
+          @input="UpdateData('installment',$event.target.value)"
+          :value="buy_data.pay.installment"
+        >
+          <!-- <option value="">請選擇分期期數</option> -->
+          <option v-for="option in cash_on[1].installment" :value="option.id"
+            >{{option.name }} (+NT$ {{Math.ceil(total_price * option.percent) |
+            priceFormat}})</option
+          >
+        </select>
+
+        <!-- <p v-if="GetError('scooter_brand')" class="error">請選擇車種品牌</p> -->
+      </div>
+    </div>
+
+    <h3 class="form_title">
+      訂單詳細資料
+    </h3>
+
+    <div class="order_detail">
+      <div class="detail_info">
+        <h4 class="title">訂單商品資料</h4>
+        <p>
+          <strong>品名:</strong> {{buy_data.product.title}}
+          <span>(+NT$ {{buy_product_name_price | priceFormat}})</span>
+        </p>
+        <p>
+          <strong>防燙蓋:</strong> {{buy_data.product.case_option}}
+          <span>(+NT$ {{buy_product_case_option_price | priceFormat}})</span>
+        </p>
+        <p>
+          <strong>內部設定:</strong> {{buy_data.product.power_option}} (+NT$
+          {{buy_product_power_option_price | priceFormat}})
+        </p>
+        <p>
+          <strong>使用車種:</strong> {{buy_data.product.scooter}}
+          (+NT${{buy_scooter_price | priceFormat}})
+        </p>
+        <p>
+          <strong>運送方式:</strong> {{buy_data.pay.ship_option}} (+NT$ 200)
+        </p>
+        <p>
+          <strong>付款方式:</strong> {{buy_data.pay.pay_way}}
+          <span v-if="buy_data.pay.pay_way=='信用卡分期付款'">
+            (+NT${{Math.ceil(total_price * buy_data.pay.percent) |
+            priceFormat}})
+          </span>
+        </p>
+      </div>
+
+      <div class="detail_info">
+        <h4 class="title">訂購人資料</h4>
+        <p><strong>購買人:</strong> {{buy_data.user.name}}</p>
+        <p><strong>地址:</strong> {{buy_data.user.address}}</p>
+        <p><strong>電話:</strong> {{buy_data.user.phone}}</p>
+        <p><strong>信箱:</strong> {{buy_data.user.email}}</p>
+      </div>
+
+      <div class="price_box detail_info">
+        <h4 class="title">付款資料</h4>
+        <p>
+          <strong>訂單總金額:</strong>
+          NT$ {{ order_total_price | priceFormat}}
+        </p>
+        <p>
+          <strong>本次付款金額:</strong>
+          <template v-if="buy_data.pay.pay_option == '訂金付款'"
+            >NT$ 1,000 <span> (本次僅支付訂金，其餘款項貨到付款)</span>
+          </template>
+          <template v-else>NT$ {{ order_total_price | priceFormat}}</template>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="form_footer">
+    <button class="next_btn" @click="perv_step">上一步</button>
+    <button class="next_btn checkout_btn" @click="next_step">送出訂單</button>
+  </div>
 </div>

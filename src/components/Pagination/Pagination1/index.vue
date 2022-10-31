@@ -1,4 +1,4 @@
-<template src='./template.html'></template>
+<template src="./template.html"></template>
 
 <script>
 export default {
@@ -6,55 +6,65 @@ export default {
     product_data: {
       require: true,
     },
+    power_data: {
+      require: true,
+    },
+    case_data: {
+      require: true,
+    },
+    scooter_data: {
+      require: true,
+    },
+    order_data: {
+      require: true,
+    },
+    total_price: {
+      require: true,
+    },
   },
   data() {
     return {
-      product: 1,
-      power_option: 1,
-      case_option: 1,
-      model: "",
-      errors: []
+      errors: [],
     };
   },
   methods: {
-    SetData(data) {
-      this.product = data.category
-      this.power_option = data.power_option
-      this.case_option = data.case_option
-      this.model = data.model
-    },
     DataVaild() {
-      this.errors = []
-      if (this.validNotEmpty(this.model) != true) {
-        this.errors.push({
-          name: "model",
-          msg: this.validNotEmpty(this.model)
-        })
+      this.errors = [];
+      if (this.order_data.title == '') {
+        this.errors.push('title');
+      }
+      if (this.order_data.scooter_brand == '') {
+        this.errors.push('scooter_brand');
+      }
+      if (this.order_data.scooter == '') {
+        this.errors.push('scooter');
+      }
+      if (this.order_data.power_option == '') {
+        this.errors.push('power_option');
+      }
+      if (this.order_data.case_option == '') {
+        this.errors.push('case_option');
       }
 
       if (this.errors.length <= 0) {
-        this.NextStep()
+        this.NextStep();
       }
     },
+    GetError(val){
+      return this.errors.indexOf(val)!=-1
+    },
+    UpdateData(key, val) {
+      let tmp_data = Object.assign({}, this.order_data);
+      console.log(tmp_data);
+      tmp_data[key] = val;
+      key == 'scooter_brand' ? (tmp_data.scooter = '') : '';
+      console.log(tmp_data);
+      this.$emit('update-buy-data', ['product', tmp_data]);
+    },
     NextStep() {
-      let buy_data = {
-        category: this.product,
-        power_option: this.power_option,
-        case_option: this.case_option,
-        model: this.model,
-      }
-      this.$emit("scroll-to-top")
-      this.$emit("update-buy-data", ["product", buy_data])
-      this.$emit("pagger-add", 1)
-    }
+      this.$emit('scroll-to-top');
+      this.$emit('pagger-add', 1);
+    },
   },
-  computed: {
-    total_price() {
-      let product_price = this.product_data.products.filter(item => this.product == item.id)[0].price
-      let power_option_price = this.product_data.power_option.filter(item => this.power_option == item.id)[0].price
-      let case_option_price = this.product_data.case_option.filter(item => this.case_option == item.id)[0].price
-      return parseInt(product_price) + parseInt(power_option_price) + parseInt(case_option_price)
-    }
-  }
 };
 </script>

@@ -175,10 +175,11 @@ class SqlAction
     {
         global $conn;
         // mysqli_query($conn, "SET CHARACTER SET 'utf8mb4_unicode_ci'");
-        $sql = "INSERT INTO `order` (`order_no`,`name`,`phone`,`email`,`address`,`commit`,`product_name`,`model`,`front_option`,`power_option`,`case_option`,`payway`,`staging`,`staging_price`,`total_price`,`is_paid`,`created_at`)
+        $sql = "INSERT INTO `order` (`order_no`,`name`,`facebook_name`,`phone`,`email`,`address`,`commit`,`product_name`,`model`,`front_option`,`power_option`,`case_option`,`payway`,`staging`,`staging_price`,`total_price`,`is_paid`,`created_at`)
                 VALUES(
                 '$order_no',
                 '" . $user['name'] . "',
+                '" . $user['facebook_name'] . "',
                 '" . $user['phone'] . "',
                 '" . $user['email'] . "',
                 '" . $user['address'] . "',

@@ -67,6 +67,7 @@ if ($result['PaymentType'] == 'VACC' || $result['PaymentType'] == 'CVS' || $resu
     $Body = str_replace("PowerOption", $userInfo['power_option'], $Body);
     $Body = str_replace("CaseOption", $userInfo['case_option'], $Body);
     $Body = str_replace("UserName", $userInfo['name'], $Body);
+    $Body = str_replace("FacebookName", $userInfo['facebook_name'], $Body);
     $Body = str_replace("UserAddress", $userInfo['address'], $Body);
     $Body = str_replace("UserEmail", $userInfo['email'], $Body);
     $Body = str_replace("UserPhone", $userInfo['phone'], $Body);
@@ -110,6 +111,7 @@ if ($result['PaymentType'] == 'VACC' || $result['PaymentType'] == 'CVS' || $resu
     $Body_us = str_replace("PowerOption", $userInfo['power_option'], $Body_us);
     $Body_us = str_replace("CaseOption", $userInfo['case_option'], $Body_us);
     $Body_us = str_replace("UserName", $userInfo['name'], $Body_us);
+    $Body_us = str_replace("FacebookName", $userInfo['facebook_name'], $Body_us);
     $Body_us = str_replace("UserAddress", $userInfo['address'], $Body_us);
     $Body_us = str_replace("UserEmail", $userInfo['email'], $Body_us);
     $Body_us = str_replace("UserPhone", $userInfo['phone'], $Body_us);
