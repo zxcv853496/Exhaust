@@ -74,14 +74,14 @@ class MailAction
 
         $transaction_state_array = [
             "消費者尚未在 payment_url 上進行操作" => "https://i.imgur.com/yKW3sAu.gif",
-            "此交易已轉專人審核處理中" => "https://i.imgur.com/yKW3sAu.gif",
-            "交易已核准但尚未請款" => "https://i.imgur.com/Zc37oTb.gif",
-            "交易請款中" => "https://i.imgur.com/Zc37oTb.gif",
-            "交易已撥款" => "https://i.imgur.com/Zc37oTb.gif",
-            "交易失敗(婉拒)" => "https://i.imgur.com/URs9y1q.gif",
-            "交易在核准後通知取消或已全額退款" => "https://i.imgur.com/URs9y1q.gif",
-            "訂單在審核時取消或逾時取消" => "https://i.imgur.com/URs9y1q.gif",
-            "部份取消資料處理中" => "https://i.imgur.com/URs9y1q.gif",
+            "此交易已轉專人審核處理中"             => "https://i.imgur.com/yKW3sAu.gif",
+            "交易已核准但尚未請款"               => "https://i.imgur.com/Zc37oTb.gif",
+            "交易請款中"                    => "https://i.imgur.com/Zc37oTb.gif",
+            "交易已撥款"                    => "https://i.imgur.com/Zc37oTb.gif",
+            "交易失敗(婉拒)"                 => "https://i.imgur.com/URs9y1q.gif",
+            "交易在核准後通知取消或已全額退款"         => "https://i.imgur.com/URs9y1q.gif",
+            "訂單在審核時取消或逾時取消"            => "https://i.imgur.com/URs9y1q.gif",
+            "部份取消資料處理中"                => "https://i.imgur.com/URs9y1q.gif",
         ];
 
         $mail_img = $transaction_state_array[$zero_card_data['transaction_state']];
@@ -114,17 +114,17 @@ class MailAction
 
         $mail = new PHPMailer\PHPMailer\PHPMailer();
         $mail->IsSMTP(); //設定使用SMTP方式寄信
-        $mail->SMTPAuth = true; //設定SMTP需要驗證
+        $mail->SMTPAuth   = true; //設定SMTP需要驗證
         $mail->SMTPSecure = 'ssl'; // Gmail的SMTP主機需要使用SSL連線
-        $mail->Host = 'smtp.gmail.com'; //Gamil的SMTP主機
-        $mail->Port = 465; //Gamil的SMTP主機的埠號(Gmail為465)。
-        $mail->CharSet = 'utf-8'; //郵件編碼
-        $mail->Username = 'bullking.website@gmail.com'; //Gamil帳號
-        $mail->Password = '.gc39Ab,3^BQ:fe'; //Gmail密碼
-        $mail->From = 'bullking.website@gmail.com'; //寄件者信箱
-        $mail->FromName = '牛王排氣管-銷售中心'; //寄件者姓名
-        $mail->Subject = $title . $zero_card_data['transaction_state']; //郵件標題
-        $mail->Body = $Body;
+        $mail->Host       = 'smtp.gmail.com'; //Gamil的SMTP主機
+        $mail->Port       = 465; //Gamil的SMTP主機的埠號(Gmail為465)。
+        $mail->CharSet    = 'utf-8'; //郵件編碼
+        $mail->Username   = 'bullking.website@gmail.com'; //Gamil帳號
+        $mail->Password   = '.gc39Ab,3^BQ:fe'; //Gmail密碼
+        $mail->From       = 'bullking.website@gmail.com'; //寄件者信箱
+        $mail->FromName   = '牛王排氣管-銷售中心'; //寄件者姓名
+        $mail->Subject    = $title . $zero_card_data['transaction_state']; //郵件標題
+        $mail->Body       = $Body;
         $mail->IsHTML(true); //郵件內容為html ( true || false)
         $mail->AddAddress($order_data['email']); //收件者郵件及名稱
         $mail->Send();
@@ -146,14 +146,14 @@ class MailAction
         //Mail給我們
         $transaction_state_array = [
             "消費者尚未在 payment_url 上進行操作" => "https://i.imgur.com/yKW3sAu.gif",
-            "此交易已轉專人審核處理中" => "https://i.imgur.com/yKW3sAu.gif",
-            "交易已核准但尚未請款" => "https://i.imgur.com/Zc37oTb.gif",
-            "交易請款中" => "https://i.imgur.com/Zc37oTb.gif",
-            "交易已撥款" => "https://i.imgur.com/Zc37oTb.gif",
-            "交易失敗(婉拒)" => "https://i.imgur.com/URs9y1q.gif",
-            "交易在核准後通知取消或已全額退款" => "https://i.imgur.com/URs9y1q.gif",
-            "訂單在審核時取消或逾時取消" => "https://i.imgur.com/URs9y1q.gif",
-            "部份取消資料處理中" => "https://i.imgur.com/URs9y1q.gif",
+            "此交易已轉專人審核處理中"             => "https://i.imgur.com/yKW3sAu.gif",
+            "交易已核准但尚未請款"               => "https://i.imgur.com/Zc37oTb.gif",
+            "交易請款中"                    => "https://i.imgur.com/Zc37oTb.gif",
+            "交易已撥款"                    => "https://i.imgur.com/Zc37oTb.gif",
+            "交易失敗(婉拒)"                 => "https://i.imgur.com/URs9y1q.gif",
+            "交易在核准後通知取消或已全額退款"         => "https://i.imgur.com/URs9y1q.gif",
+            "訂單在審核時取消或逾時取消"            => "https://i.imgur.com/URs9y1q.gif",
+            "部份取消資料處理中"                => "https://i.imgur.com/URs9y1q.gif",
         ];
 
         $mail_img = $transaction_state_array[$zero_card_data['transaction_state']];
@@ -183,19 +183,19 @@ class MailAction
 
         $mail_us = new PHPMailer\PHPMailer\PHPMailer();
         $mail_us->IsSMTP(); //設定使用SMTP方式寄信
-        $mail_us->SMTPAuth = true; //設定SMTP需要驗證
+        $mail_us->SMTPAuth   = true; //設定SMTP需要驗證
         $mail_us->SMTPSecure = 'ssl'; // Gmail的SMTP主機需要使用SSL連線
-        $mail_us->Host = 'smtp.gmail.com'; //Gamil的SMTP主機
-        $mail_us->Port = 465; //Gamil的SMTP主機的埠號(Gmail為465)。
-        $mail_us->CharSet = 'utf-8'; //郵件編碼
-        $mail_us->Username = 'bullking.website@gmail.com'; //Gamil帳號
-        $mail_us->Password = '.gc39Ab,3^BQ:fe'; //Gmail密碼
-        $mail_us->From = 'bullking.website@gmail.com'; //寄件者信箱
-        $mail_us->FromName = '牛王排氣管-銷售中心'; //寄件者姓名
-        $mail_us->Subject = '【牛王排氣管】客戶' . $order_data['name'] . '的零卡分期訂單，狀態：' . $zero_card_data['transaction_state']; //郵件標題
-        $mail_us->Body = $Body_us;
+        $mail_us->Host       = 'smtp.gmail.com'; //Gamil的SMTP主機
+        $mail_us->Port       = 465; //Gamil的SMTP主機的埠號(Gmail為465)。
+        $mail_us->CharSet    = 'utf-8'; //郵件編碼
+        $mail_us->Username   = 'bullking.website@gmail.com'; //Gamil帳號
+        $mail_us->Password   = '.gc39Ab,3^BQ:fe'; //Gmail密碼
+        $mail_us->From       = 'bullking.website@gmail.com'; //寄件者信箱
+        $mail_us->FromName   = '牛王排氣管-銷售中心'; //寄件者姓名
+        $mail_us->Subject    = '【牛王排氣管】客戶' . $order_data['name'] . '的零卡分期訂單，狀態：' . $zero_card_data['transaction_state']; //郵件標題
+        $mail_us->Body       = $Body_us;
         $mail_us->IsHTML(true); //郵件內容為html ( true || false)
-        $mail_us->AddAddress('yongxin19861986@gmail.com'); //收件者郵件及名稱
+        $mail_us->AddAddress('thorexhaust1999@gmail.com'); //收件者郵件及名稱
         $mail_us->Send();
     }
 

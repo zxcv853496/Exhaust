@@ -131,7 +131,7 @@ if ($result['PaymentType'] == 'VACC' || $result['PaymentType'] == 'CVS' || $resu
     $mail_us->Subject    = '【雷神排氣管】新訂單，您有一筆來自客戶' . $userInfo['name'] . '的訂單：'; //郵件標題
     $mail_us->Body       = $Body_us;
     $mail_us->IsHTML(true); //郵件內容為html ( true || false)
-    $mail_us->AddAddress('yongxin19861986@gmail.com'); //收件者郵件及名稱
+    $mail_us->AddAddress('thorexhaust1999@gmail.com'); //收件者郵件及名稱
 
     if ($mail->Send() && $mail_us->Send()) {
         header("Location:https://thor-exhaust.tw/?status=order_finish&order_no=" . $result['MerchantOrderNo']);

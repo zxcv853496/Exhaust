@@ -103,7 +103,7 @@ $mail_us->FromName   = '雷神排氣管-銷售中心'; //寄件者姓名
 $mail_us->Subject    = '【雷神排氣管】貨到付款，客戶' . $user['name'] . '的訂單：'; //郵件標題
 $mail_us->Body       = $Body_us;
 $mail_us->IsHTML(true); //郵件內容為html ( true || false)
-$mail_us->AddAddress('yongxin19861986@gmail.com'); //收件者郵件及名稱
+$mail_us->AddAddress('thorexhaust1999@gmail.com'); //收件者郵件及名稱
 
 $mail->Send();
 $mail_us->Send();
