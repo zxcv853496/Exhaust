@@ -8,36 +8,36 @@ if (!isset($_POST['TradeInfo'])) {
     header("Location:https://thor-exhaust.tw/?status=payerror");
 } else {
     $TradeInfo = $_POST['TradeInfo'];
-    $data = CommonAction::createNewebpayDecrypt($TradeInfo);
-    $data = json_decode($data, true);
-    $result = $data['Result'];
-    $userInfo = SqlAction::getorder($result['MerchantOrderNo']);
+    $data      = CommonAction::createNewebpayDecrypt($TradeInfo);
+    $data      = json_decode($data, true);
+    $result    = $data['Result'];
+    $userInfo  = SqlAction::getorder($result['MerchantOrderNo']);
 }
 
 if ($result['PaymentType'] == 'VACC' || $result['PaymentType'] == 'CVS' || $result['PaymentType'] == 'BARCODE') {
     if ($result['PaymentType'] == 'VACC') {
-        $payWay = 'ATM 轉帳';
-        $bankCode = $result['BankCode'];
-        $codeNo = $result['CodeNo'];
-        $barCode1 = '';
-        $barCode2 = '';
-        $barCode3 = '';
+        $payWay    = 'ATM 轉帳';
+        $bankCode  = $result['BankCode'];
+        $codeNo    = $result['CodeNo'];
+        $barCode1  = '';
+        $barCode2  = '';
+        $barCode3  = '';
         $putCodeNo = '銀行代號：' . $bankCode . '<br />' . '銀行帳號：' . $codeNo;
         $ifBarCode = 'none';
     }
     if ($result['PaymentType'] == 'CVS') {
-        $payWay = '超商代碼繳費';
-        $barCode1 = '';
-        $barCode2 = '';
-        $barCode3 = '';
+        $payWay    = '超商代碼繳費';
+        $barCode1  = '';
+        $barCode2  = '';
+        $barCode3  = '';
         $putCodeNo = $result['CodeNo'];
         $ifBarCode = 'none';
     }
     if ($result['PaymentType'] == 'BARCODE') {
-        $payWay = '超商條碼繳費';
-        $barCode1 = $result['Barcode_1'];
-        $barCode2 = $result['Barcode_2'];
-        $barCode3 = $result['Barcode_3'];
+        $payWay    = '超商條碼繳費';
+        $barCode1  = $result['Barcode_1'];
+        $barCode2  = $result['Barcode_2'];
+        $barCode3  = $result['Barcode_3'];
         $putCodeNo = '';
         $ifBarCode = 'block';
     }
@@ -75,17 +75,17 @@ if ($result['PaymentType'] == 'VACC' || $result['PaymentType'] == 'CVS' || $resu
 
     $mail = new PHPMailer\PHPMailer\PHPMailer();
     $mail->IsSMTP(); //設定使用SMTP方式寄信
-    $mail->SMTPAuth = true; //設定SMTP需要驗證
+    $mail->SMTPAuth   = true; //設定SMTP需要驗證
     $mail->SMTPSecure = 'ssl'; // Gmail的SMTP主機需要使用SSL連線
-    $mail->Host = 'smtp.gmail.com'; //Gamil的SMTP主機
-    $mail->Port = 465; //Gamil的SMTP主機的埠號(Gmail為465)。
-    $mail->CharSet = 'utf-8'; //郵件編碼
-    $mail->Username = 'thor.exhaust.website@gmail.com'; //Gamil帳號
-    $mail->Password = 'ifmgtybbyzgucfae'; //Gmail密碼
-    $mail->From = 'thor.exhaust.website@gmail.com'; //寄件者信箱
-    $mail->FromName = '雷神排氣管-支援中心'; //寄件者姓名
-    $mail->Subject = '【雷神排氣管】感謝您的訂購，我們將盡快聯絡您：'; //郵件標題
-    $mail->Body = $Body;
+    $mail->Host       = 'smtp.gmail.com'; //Gamil的SMTP主機
+    $mail->Port       = 465; //Gamil的SMTP主機的埠號(Gmail為465)。
+    $mail->CharSet    = 'utf-8'; //郵件編碼
+    $mail->Username   = 'thorexhaust1999@gmail.com'; //Gamil帳號
+    $mail->Password   = 'wfzfgcczsyeangei'; //Gmail密碼
+    $mail->From       = 'thorexhaust1999@gmail.com'; //寄件者信箱
+    $mail->FromName   = '雷神排氣管-支援中心'; //寄件者姓名
+    $mail->Subject    = '【雷神排氣管】感謝您的訂購，我們將盡快聯絡您：'; //郵件標題
+    $mail->Body       = $Body;
     $mail->IsHTML(true); //郵件內容為html ( true || false)
     $mail->AddAddress($userInfo['email']); //收件者郵件及名稱
 
@@ -119,17 +119,17 @@ if ($result['PaymentType'] == 'VACC' || $result['PaymentType'] == 'CVS' || $resu
 
     $mail_us = new PHPMailer\PHPMailer\PHPMailer();
     $mail_us->IsSMTP(); //設定使用SMTP方式寄信
-    $mail_us->SMTPAuth = true; //設定SMTP需要驗證
+    $mail_us->SMTPAuth   = true; //設定SMTP需要驗證
     $mail_us->SMTPSecure = 'ssl'; // Gmail的SMTP主機需要使用SSL連線
-    $mail_us->Host = 'smtp.gmail.com'; //Gamil的SMTP主機
-    $mail_us->Port = 465; //Gamil的SMTP主機的埠號(Gmail為465)。
-    $mail_us->CharSet = 'utf-8'; //郵件編碼
-    $mail_us->Username = 'thor.exhaust.website@gmail.com'; //Gamil帳號
-    $mail_us->Password = 'ifmgtybbyzgucfae'; //Gmail密碼
-    $mail_us->From = 'thor.exhaust.website@gmail.com'; //寄件者信箱
-    $mail_us->FromName = '雷神排氣管-銷售中心'; //寄件者姓名
-    $mail_us->Subject = '【雷神排氣管】新訂單，您有一筆來自客戶' . $userInfo['name'] . '的訂單：'; //郵件標題
-    $mail_us->Body = $Body_us;
+    $mail_us->Host       = 'smtp.gmail.com'; //Gamil的SMTP主機
+    $mail_us->Port       = 465; //Gamil的SMTP主機的埠號(Gmail為465)。
+    $mail_us->CharSet    = 'utf-8'; //郵件編碼
+    $mail_us->Username   = 'thorexhaust1999@gmail.com'; //Gamil帳號
+    $mail_us->Password   = 'wfzfgcczsyeangei'; //Gmail密碼
+    $mail_us->From       = 'thorexhaust1999@gmail.com'; //寄件者信箱
+    $mail_us->FromName   = '雷神排氣管-銷售中心'; //寄件者姓名
+    $mail_us->Subject    = '【雷神排氣管】新訂單，您有一筆來自客戶' . $userInfo['name'] . '的訂單：'; //郵件標題
+    $mail_us->Body       = $Body_us;
     $mail_us->IsHTML(true); //郵件內容為html ( true || false)
     $mail_us->AddAddress('yongxin19861986@gmail.com'); //收件者郵件及名稱
 
