@@ -24,9 +24,8 @@ export default {
       scooter_data: scooter_data,
       buy_data: {
         product: {
-          title: '雷神黑鐵排氣管',
-          power_option: '適用於原廠引擎',
-          case_option: 'KOSO風動鋭行防燙蓋',
+          title: '雷神黑鐵排氣管+卡夢護片',
+          power_option: '靜音回壓',
           scooter_brand: '',
           scooter: '',
         },
@@ -41,7 +40,7 @@ export default {
         },
         pay: {
           ship_option: '宅配到府',
-          pay_way: '信用卡一次付清',
+          pay_way: 'Bobopay無卡分期',
           pay_option: '全額付款',
           installment: 3,
           percent: 0.03,
@@ -64,7 +63,10 @@ export default {
       if (user_data.remarks == '') {
         user_data.remarks = '-';
       }
-      if (this.buy_data.pay.pay_way == '信用卡分期付款') {
+      if (
+        this.buy_data.pay.pay_way == '信用卡分期付款' ||
+        this.buy_data.pay.pay_way == 'Bobopay無卡分期'
+      ) {
         installment = this.buy_data.pay.installment;
         installment_price = Math.ceil(
           this.total_price * this.buy_data.pay.percent
@@ -73,9 +75,6 @@ export default {
       if (this.buy_data.pay.pay_option == '訂金付款') {
         total_price = 1000;
       }
-      // else {
-      //   total_price += 200; //運費
-      // }
 
       let data = {
         user: {
@@ -95,7 +94,7 @@ export default {
             this.buy_data.product.scooter,
           front_option: '',
           power_option: this.buy_data.product.power_option,
-          case_option: this.buy_data.product.case_option,
+          case_option: '',
         },
         pay: {
           payway: this.buy_data.pay.pay_way,
@@ -116,7 +115,6 @@ export default {
         value: data.pay.total_price, // 標籤 數字(選填)
         product_price: data.pay.total_price,
         product_name: data.product.name,
-        case_option: data.product.case_option,
         power_option: data.product.power_option,
         pay_way: data.pay.pay_way,
         pay_option: data.pay.pay_option,
@@ -124,9 +122,34 @@ export default {
 
       if (this.buy_data.pay.pay_way == '貨到付款') {
         this.SendCODOrder(data);
+      } else if (this.buy_data.pay.pay_way == 'Bobopay無卡分期') {
+        this.SendBobopayOrder(data);
       } else {
         this.SendNewebPayOrder(data);
       }
+    },
+    SendBobopayOrder(data) {
+      this.axios
+        .post(
+          process.env.VUE_APP_BASE_API + 'BOBOPAY_Payment.php',
+          JSON.stringify(data)
+        )
+        .then((response) => {
+          this.GLOBAL.setLoading(false);
+          this.$router.replace({
+            query: {
+              status: 'order_finish',
+              order_no: response.data,
+            },
+          });
+          this.CheckOrderRecord();
+          this.GLOBAL.setDialog(
+            true,
+            '感謝您的訂購！您的訂單編號為:<br><strong>' +
+              this.$route.query.order_no +
+              '</strong><br>近日請留意您的電話與簡訊，將有專人與您聯繫'
+          );
+        });
     },
     SendCODOrder(data) {
       this.axios
@@ -204,7 +227,6 @@ export default {
       let product_price = 0;
       let scooter_price = 0;
       let power_option_price = 0;
-      let case_option_price = 0;
 
       if (this.buy_data.product.title != '') {
         product_price = this.product_data.filter(
@@ -216,7 +238,6 @@ export default {
           this.buy_data.product.scooter_brand
         ].filter((item) => item.title == this.buy_data.product.scooter)[0]
           .price;
-        console.log(scooter_price);
       }
       if (this.buy_data.product.power_option != '') {
         power_option_price = this.power_data.filter(
@@ -224,17 +245,16 @@ export default {
         )[0].price;
       }
 
-      if (this.buy_data.product.case_option != '') {
-        case_option_price = this.case_data.filter(
-          (item) => this.buy_data.product.case_option == item.name
-        )[0].price;
-      }
+      // if (this.buy_data.product.case_option != '') {
+      //   case_option_price = this.case_data.filter(
+      //     (item) => this.buy_data.product.case_option == item.name
+      //   )[0].price;
+      // }
 
       return (
         parseInt(product_price) +
         parseInt(scooter_price) +
-        parseInt(power_option_price) +
-        parseInt(case_option_price)
+        parseInt(power_option_price)
       );
     },
     order_total_price() {

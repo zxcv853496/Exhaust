@@ -42,23 +42,21 @@ export default {
       if (this.order_data.power_option == '') {
         this.errors.push('power_option');
       }
-      if (this.order_data.case_option == '') {
-        this.errors.push('case_option');
-      }
+      // if (this.order_data.case_option == '') {
+      //   this.errors.push('case_option');
+      // }
 
       if (this.errors.length <= 0) {
         this.NextStep();
       }
     },
-    GetError(val){
-      return this.errors.indexOf(val)!=-1
+    GetError(val) {
+      return this.errors.indexOf(val) != -1;
     },
     UpdateData(key, val) {
       let tmp_data = Object.assign({}, this.order_data);
-      console.log(tmp_data);
       tmp_data[key] = val;
       key == 'scooter_brand' ? (tmp_data.scooter = '') : '';
-      console.log(tmp_data);
       this.$emit('update-buy-data', ['product', tmp_data]);
     },
     NextStep() {

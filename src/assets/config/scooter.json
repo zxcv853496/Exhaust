@@ -6,11 +6,11 @@
         },
         {
             "title": "FORCE 2.0",
-            "price": 500
+            "price": 0
         },
         {
             "title": "NAMX",
-            "price": 500
+            "price": 0
         },
         {
             "title": "SMAX",
@@ -38,11 +38,11 @@
         },
         {
             "title": "六代勁戰",
-            "price": 500
+            "price": 0
         },
         {
             "title": "水冷 BWS",
-            "price": 500
+            "price": 0
         },
         {
             "title": "BWS X",
@@ -174,7 +174,7 @@
         },
         {
             "title": "JET SL",
-            "price": 500
+            "price": 0
         },
         {
             "title": "Fighter6",
@@ -190,7 +190,7 @@
         },
         {
             "title": "FNX",
-            "price": 500
+            "price": 0
         },
         {
             "title": "GR 125",
@@ -202,7 +202,7 @@
         },
         {
             "title": "DRG",
-            "price": 500
+            "price": 0
         }
     ],
     "PGO": [

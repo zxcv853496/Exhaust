@@ -28,10 +28,18 @@ export default {
   data() {
     return {
       cash_on: [
-        // {
-        //   id: 1,
-        //   name: '貨到付款',
-        // },
+        {
+          id: 1,
+          name: '貨到付款',
+        },
+        {
+          id: 8,
+          name: 'Bobopay無卡分期',
+          installment: [
+            { id: 3, name: '3期', percent: 0, show_percent: false },
+            { id: 6, name: '6期', percent: 0, show_percent: false },
+          ],
+        },
         {
           id: 2,
           name: '信用卡一次付清',
@@ -40,16 +48,12 @@ export default {
           id: 3,
           name: '信用卡分期付款',
           installment: [
-            { id: 3, name: '3期', percent: 0.03 },
-            { id: 6, name: '6期', percent: 0.035 },
-            { id: 12, name: '12期', percent: 0.07 },
-            { id: 18, name: '18期', percent: 0.09 },
-            { id: 24, name: '24期', percent: 0.12 },
+            { id: 3, name: '3期', percent: 0.03, show_percent: true },
+            { id: 6, name: '6期', percent: 0.035, show_percent: true },
+            { id: 12, name: '12期', percent: 0.07, show_percent: true },
+            { id: 18, name: '18期', percent: 0.09, show_percent: true },
+            { id: 24, name: '24期', percent: 0.12, show_percent: true },
           ],
-        },
-        {
-          id: 4,
-          name: 'WebATM',
         },
         {
           id: 5,
@@ -72,7 +76,7 @@ export default {
       tmp_data[key] = val;
       key == 'pay_way' ? (tmp_data.installment = 3) : '';
       key == 'installment'
-        ? (tmp_data.percent = this.cash_on[1].installment.filter(
+        ? (tmp_data.percent = this.installment_list.filter(
             (item) => item.id == val
           )[0].percent)
         : '';
@@ -91,6 +95,12 @@ export default {
     },
   },
   computed: {
+    installment_list() {
+      let payment = this.cash_on.filter(
+        (item) => item.name == this.buy_data.pay.pay_way
+      )[0];
+      return payment.installment ? payment.installment : [];
+    },
     pay_way_list() {
       let tmp_list = JSON.parse(JSON.stringify(this.cash_on));
       if (this.buy_data.pay.pay_option == '訂金付款') {
@@ -111,15 +121,6 @@ export default {
         : this.product_data.filter(
             (item) => item.name == this.buy_data.product.title
           )[0].price;
-    },
-    buy_product_case_option_price() {
-      if (this.buy_data.product.case_option != '') {
-        return this.case_data.filter(
-          (item) => item.name == this.buy_data.product.case_option
-        )[0].price;
-      } else {
-        return 0;
-      }
     },
     buy_product_power_option_price() {
       if (this.buy_data.product.power_option != '') {

@@ -4,7 +4,7 @@
       付款資訊
     </h3>
 
-    <div class="product product_option">
+    <!-- <div class="product product_option">
       <h4 class="title">付款選項</h4>
       <div class="option_container">
         <div class="select_box">
@@ -13,17 +13,15 @@
             @input="UpdateData('pay_option',$event.target.value)"
             :value="buy_data.pay.pay_option"
           >
-            <!-- <option value="">請選擇付款選項</option> -->
             <option value="全額付款"
               >全額付款 (NT$ {{total_price | priceFormat}})</option
             >
             <option value="訂金付款">訂金付款 (NT$ 1,000)</option>
           </select>
 
-          <!-- <p v-if="GetError('scooter_brand')" class="error">請選擇車種品牌</p> -->
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="product product_option">
       <h4 class="title">寄送方式</h4>
@@ -64,7 +62,10 @@
         <!-- <p v-if="GetError('scooter_brand')" class="error">請選擇車種品牌</p> -->
       </div>
 
-      <div class="select_box" v-if="buy_data.pay.pay_way=='信用卡分期付款'">
+      <div
+        class="select_box"
+        v-if="buy_data.pay.pay_way=='信用卡分期付款'||buy_data.pay.pay_way=='Bobopay無卡分期'"
+      >
         <label>分期期數</label>
         <select
           class="form_select"
@@ -72,10 +73,15 @@
           :value="buy_data.pay.installment"
         >
           <!-- <option value="">請選擇分期期數</option> -->
-          <option v-for="option in cash_on[1].installment" :value="option.id"
-            >{{option.name }} (+NT$ {{Math.ceil(total_price * option.percent) |
-            priceFormat}})</option
-          >
+          <option v-for="option in installment_list" :value="option.id">
+            <template v-if="option.show_percent">
+              {{option.name }} (+NT$ {{Math.ceil(total_price * option.percent) |
+              priceFormat}})
+            </template>
+            <template e-else>
+              {{option.name }}
+            </template>
+          </option>
         </select>
 
         <!-- <p v-if="GetError('scooter_brand')" class="error">請選擇車種品牌</p> -->
@@ -92,10 +98,6 @@
         <p>
           <strong>品名:</strong> {{buy_data.product.title}}
           <span>(+NT$ {{buy_product_name_price | priceFormat}})</span>
-        </p>
-        <p>
-          <strong>防燙蓋:</strong> {{buy_data.product.case_option}}
-          <span>(+NT$ {{buy_product_case_option_price | priceFormat}})</span>
         </p>
         <p>
           <strong>內部設定:</strong> {{buy_data.product.power_option}} (+NT$
